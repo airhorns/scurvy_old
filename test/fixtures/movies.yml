@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  year: 1
+  director: MyString
+  imdb: MyString
+  extrating: 1
+  synopsis: MyText
+  tagline: MyText
+  length: 1
+  releasetype: MyString
+  releasenotes: MyString
+  addedby: 1
+  language: MyString
+
+two:
+  name: MyString
+  year: 1
+  director: MyString
+  imdb: MyString
+  extrating: 1
+  synopsis: MyText
+  tagline: MyText
+  length: 1
+  releasetype: MyString
+  releasenotes: MyString
+  addedby: 1
+  language: MyString

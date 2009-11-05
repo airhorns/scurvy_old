@@ -1,0 +1,39 @@
+<h1>Movies</h1>
+<% if @movies.first
+	m = @movies.third %>
+	<div class="span-10 box">
+		<div class="spethial">
+			<h2>Featured Addition</h2>
+			<div class="span-5">
+			<%= image_tag(m.posterurl, :class => "span-5 poster", :alt => "movie poster") if m.posterurl %>
+			</div>
+			<div class="span-5 last">
+				<h3><%=h m.title %></h3>
+				<p class="synopsis"><%=h m.synopsis %></p>
+				<ul>
+					<%=	"<li>Year: #{m.year}</li>" if m.year %>
+					<%=	"<li>Directed by: #{m.director}</li>" if m.director%>
+					<%= "<li>IMDB Rating: #{m.imdbrating} #{link_to "Visit IMDB page", 'http://www.imdb.com/title/tt' + m.imdbid}</li>" if m.imdbid%>
+					<%=	"<li>Length: #{length_of_time_in_words(m.length.minutes)}</li>" if m.length%>
+					<%=	"<li>Language: #{m.language}</li>" if m.language%>
+					<%=	"<li>Release Type: #{m.releasetype}</li>" if m.releasetype%>
+					<%=	"<li>Release Notes: #{m.releasenotes}</li>" if m.releasenotes%>
+				</ul>
+				<% if m.download.locations %>
+					<h3>Files</h3>
+					<ul>
+					<% m.download.locations.each do |f| %>
+					<li><%=h f.location%></li>
+					<% end %>
+					</ul>
+				<% end %>
+			</div>
+		</div>
+	</div>
+<% end%>
+
+<div class="span-12 box">
+	<h2>New Movies</h2>
+<%= render(:partial => "movie_table", :movies => @movies)%>
+<%= link_to 'New movie', new_movie_path %>
+</div>
