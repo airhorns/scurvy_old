@@ -1,0 +1,29 @@
+<div class="span-10 box">
+	<div class="spethial">
+		<h2>Featured Addition</h2>
+		<div class="span-5">
+		<%= image_tag(movie.posterurl, :class => "span-5 poster", :alt => "movie poster") if movie.posterurl %>
+		</div>
+		<div class="span-5 last">
+			<h3><%=h movie.title %></h3>
+			<p class="synopsis"><%=h movie.synopsis %></p>
+			<ul>
+				<%=	"<li>Year: #{movie.year}</li>" if movie.year %>
+				<%=	"<li>Directed by: #{movie.director}</li>" if movie.director%>
+				<%= "<li>IMDB Rating: #{movie.imdbrating} #{link_to "Visit IMDB page", 'http://www.imdb.com/title/tt' + movie.imdbid}</li>" if movie.imdbid%>
+				<%=	"<li>Length: #{length_of_time_in_words(movie.length.minutes)}</li>" if movie.length%>
+				<%=	"<li>Language: #{movie.language}</li>" if movie.language%>
+				<%=	"<li>Release Type: #{movie.releasetype}</li>" if movie.releasetype%>
+				<%=	"<li>Release Notes: #{movie.releasenotes}</li>" if movie.releasenotes%>
+			</ul>
+			<% if movie.download.locations %>
+				<h4>Files</h4>
+				<ul>
+				<% movie.download.locations.each do |f| %>
+				<li><%=h f.location%></li>
+				<% end %>
+				</ul>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  download_id: 1
+  release_type: 1
+  notes: MyText
+
+two:
+  download_id: 1
+  release_type: 1
+  notes: MyText

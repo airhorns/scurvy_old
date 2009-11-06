@@ -1,0 +1,42 @@
+<div class="movie downloadlist ">
+<table>
+  <tr>
+    <th class="title">Title</th>
+	<th>IMDB Rating</th>
+	<th>Synopsis</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th>Length</th>
+    <!-- <th>Release Type</th>
+    <th>Release Notes</th>
+    <th>Language</th> -->
+  </tr>
+
+<% movie_list.each do |movie| %>
+  <tr class="<%= cycle("", "altrow")%>">
+	<td>
+	<%=h movie.title %>
+	</td>
+	<td><%= 
+	if movie.imdbid 
+		link_to movie.imdbrating, 'http://www.imdb.com/title/tt' + movie.imdbid 
+	else 
+		movie.imdbrating
+	end %></td>
+	<td><%=h movie.synopsis %></td>
+    <td><%=h movie.director %></td>
+	<td><%=h movie.year %></td>    
+    <td><%= 
+	if movie.length 
+		length_of_time_in_words(movie.length.minutes) 
+	end %></td>
+    <!-- <td><%=h movie.releasetype %></td>
+    <td><%=h movie.releasenotes %></td>
+    <td><%=h movie.language %></td> -->
+    <!-- <td><%= link_to 'Show', movie %></td>
+    <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+    <td><%= link_to 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete %></td> -->
+  </tr>
+<% end %>
+</table>
+</div>

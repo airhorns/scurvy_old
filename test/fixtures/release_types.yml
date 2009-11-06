@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type: MyString
+  description: MyString
+  applies_to: MyString
+
+two:
+  type: MyString
+  description: MyString
+  applies_to: MyString
