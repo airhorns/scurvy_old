@@ -52,6 +52,11 @@ table tr.altrow {
 	margin-right: 10px;
 }
 
+.spethial h3 {
+	margin-top: 3px;
+	font-weight: bolder;
+}
+
 .box {
 	border: 1px solid #CCC;
 	background-color: #FFF;
@@ -60,6 +65,6 @@ table tr.altrow {
 }
 .box h2 {
 	font-size: 1em;
-	margin: 0px;
-	padding-bottom: 3px;
+	margin: 0px 0px 4px 0px;
+	border-bottom: 1px solid #CCCCCC
 }
