@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20091106005636) do
 
   create_table "locations", :force => true do |t|
     t.string   "location"
-    t.integer  "download_id"
+    t.integer  "release_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
