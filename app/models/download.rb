@@ -3,4 +3,5 @@ class Download < ActiveRecord::Base
   
   belongs_to :resource, :polymorphic => true
   has_many :locations
+  has_many :releases
 end

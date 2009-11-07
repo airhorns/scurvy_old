@@ -2,7 +2,7 @@ class CreateReleases < ActiveRecord::Migration
   def self.up
     create_table :releases do |t|
       t.integer :download_id
-      t.integer :release_type
+      t.integer :release_type_id
       t.text :notes
 
       t.timestamps
