@@ -9,7 +9,7 @@ class CreateReleases < ActiveRecord::Migration
     end
     
     create_table :release_types do |t|
-      t.string :type
+      t.string :name
       t.string :description
       t.string :applies_to
 
