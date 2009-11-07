@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20091106005636) do
   end
 
   create_table "release_types", :force => true do |t|
-    t.string   "type"
+    t.string   "name"
     t.string   "description"
     t.string   "applies_to"
     t.datetime "created_at"
