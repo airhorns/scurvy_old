@@ -1,4 +1,4 @@
-<h1>Movies</h1>
+<% @titre = "Movies" %>
 <%= render(:partial => "movie_highlight", :locals => {:movie => @movies.first }) if @movies.third %>
 
 <div class="span-11 box">
