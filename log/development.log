@@ -13619,3 +13619,235 @@ Migrating to CreateReleases (20091106005636)
   [4;36;1mLocation Create (0.1ms)[0m   [0;1mINSERT INTO "locations" ("location", "created_at", "updated_at", "download_id") VALUES('/mnt/jungledisk/downloads/movies/The.International.R5.LiNE.XviD-DEViSE/devise-theint.nfo', '2009-11-07 21:25:13', '2009-11-07 21:25:13', 4)[0m
   [4;35;1mLocation Create (0.1ms)[0m   [0mINSERT INTO "locations" ("location", "created_at", "updated_at", "download_id") VALUES('/mnt/jungledisk/downloads/movies/The.International.R5.LiNE.XviD-DEViSE/devise-theint.avi', '2009-11-07 21:25:13', '2009-11-07 21:25:13', 4)[0m
   [4;36;1mRelease Create (0.1ms)[0m   [0;1mINSERT INTO "releases" ("created_at", "notes", "updated_at", "download_id", "release_type_id") VALUES('2009-11-07 21:25:13', NULL, '2009-11-07 21:25:13', 4, 1)[0m
+
+
+Processing MoviesController#index (for 127.0.0.1 at 2009-11-07 16:27:00) [GET]
+  Parameters: {"action"=>"index", "controller"=>"movies"}
+  [4;36;1mMovie Load (1.6ms)[0m   [0;1mSELECT * FROM "movies" [0m
+Rendering template within layouts/application
+Rendering movies/index
+  [4;35;1mDownload Load (0.4ms)[0m   [0mSELECT * FROM "downloads" WHERE ("downloads".resource_id = 1 AND "downloads".resource_type = 'Movie') LIMIT 1[0m
+  [4;36;1mRelease Load (0.3ms)[0m   [0;1mSELECT * FROM "releases" WHERE ("releases".download_id = 1) [0m
+  [4;35;1mReleaseType Load (0.3ms)[0m   [0mSELECT * FROM "release_types" WHERE ("release_types"."id" = 1) [0m
+Rendered movies/_movie_highlight (62.3ms)
+Rendered movies/_movie_list (32.5ms)
+Completed in 144ms (View: 132, DB: 3) | 200 OK [http://localhost/movies]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:27:00) [GET]
+
+ActionController::RoutingError (No route matches "/js/jquery-ui-personalized-1.6rc2.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:27:00) [GET]
+
+ActionController::RoutingError (No route matches "/js/widgets.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:27:00) [GET]
+
+ActionController::RoutingError (No route matches "/js/jquery-ui-personalized-1.6rc2.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:27:00) [GET]
+
+ActionController::RoutingError (No route matches "/js/widgets.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing MoviesController#index (for 127.0.0.1 at 2009-11-07 16:27:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"movies"}
+  [4;36;1mMovie Load (1.6ms)[0m   [0;1mSELECT * FROM "movies" [0m
+Rendering template within layouts/application
+Rendering movies/index
+  [4;35;1mDownload Load (0.4ms)[0m   [0mSELECT * FROM "downloads" WHERE ("downloads".resource_id = 1 AND "downloads".resource_type = 'Movie') LIMIT 1[0m
+  [4;36;1mRelease Load (0.3ms)[0m   [0;1mSELECT * FROM "releases" WHERE ("releases".download_id = 1) [0m
+  [4;35;1mReleaseType Load (0.3ms)[0m   [0mSELECT * FROM "release_types" WHERE ("release_types"."id" = 1) [0m
+Rendered movies/_movie_highlight (70.1ms)
+Rendered movies/_movie_list (13.4ms)
+Completed in 106ms (View: 98, DB: 3) | 200 OK [http://localhost/movies]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:27:20) [GET]
+
+ActionController::RoutingError (No route matches "/js/jquery-ui-personalized-1.6rc2.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:27:20) [GET]
+
+ActionController::RoutingError (No route matches "/js/widgets.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:27:21) [GET]
+
+ActionController::RoutingError (No route matches "/js/jquery-ui-personalized-1.6rc2.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:27:21) [GET]
+
+ActionController::RoutingError (No route matches "/js/widgets.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing MoviesController#index (for 127.0.0.1 at 2009-11-07 16:28:15) [GET]
+  Parameters: {"action"=>"index", "controller"=>"movies"}
+  [4;36;1mMovie Load (3.1ms)[0m   [0;1mSELECT * FROM "movies" [0m
+Rendering template within layouts/application
+Rendering movies/index
+  [4;35;1mDownload Load (0.5ms)[0m   [0mSELECT * FROM "downloads" WHERE ("downloads".resource_id = 1 AND "downloads".resource_type = 'Movie') LIMIT 1[0m
+  [4;36;1mRelease Load (0.3ms)[0m   [0;1mSELECT * FROM "releases" WHERE ("releases".download_id = 1) [0m
+  [4;35;1mReleaseType Load (0.3ms)[0m   [0mSELECT * FROM "release_types" WHERE ("release_types"."id" = 1) [0m
+Rendered movies/_movie_highlight (93.2ms)
+Rendered movies/_movie_list (13.5ms)
+Completed in 132ms (View: 122, DB: 4) | 200 OK [http://localhost/movies]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:28:15) [GET]
+
+ActionController::RoutingError (No route matches "/js/jquery-ui-personalized-1.6rc2.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:28:15) [GET]
+
+ActionController::RoutingError (No route matches "/js/widgets.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:28:15) [GET]
+
+ActionController::RoutingError (No route matches "/js/jquery-ui-personalized-1.6rc2.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:28:15) [GET]
+
+ActionController::RoutingError (No route matches "/js/widgets.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing MoviesController#index (for 127.0.0.1 at 2009-11-07 16:28:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"movies"}
+  [4;36;1mMovie Load (1.6ms)[0m   [0;1mSELECT * FROM "movies" [0m
+Rendering template within layouts/application
+Rendering movies/index
+  [4;35;1mDownload Load (0.5ms)[0m   [0mSELECT * FROM "downloads" WHERE ("downloads".resource_id = 1 AND "downloads".resource_type = 'Movie') LIMIT 1[0m
+  [4;36;1mRelease Load (0.3ms)[0m   [0;1mSELECT * FROM "releases" WHERE ("releases".download_id = 1) [0m
+  [4;35;1mReleaseType Load (0.3ms)[0m   [0mSELECT * FROM "release_types" WHERE ("release_types"."id" = 1) [0m
+Rendered movies/_movie_highlight (34.5ms)
+Rendered movies/_movie_list (12.9ms)
+Completed in 77ms (View: 61, DB: 3) | 200 OK [http://localhost/movies]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:28:30) [GET]
+
+ActionController::RoutingError (No route matches "/js/jquery-ui-personalized-1.6rc2.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:28:30) [GET]
+
+ActionController::RoutingError (No route matches "/js/widgets.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:28:30) [GET]
+
+ActionController::RoutingError (No route matches "/js/jquery-ui-personalized-1.6rc2.min.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-07 16:28:30) [GET]
+
+ActionController::RoutingError (No route matches "/js/widgets.js" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing MoviesController#index (for 127.0.0.1 at 2009-11-07 16:32:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"movies"}
+  [4;36;1mMovie Load (1.6ms)[0m   [0;1mSELECT * FROM "movies" [0m
+Rendering template within layouts/application
+Rendering movies/index
+
+ActionView::TemplateError (undefined method `releases' for #<Movie:0x2438aa8>) on line #19 of app/views/movies/_movie_highlight.html.erb:
+16: 				<%=	"<li>Release Type: #{movie.releasetype}</li>" if movie.releasetype%>
+17: 				<%=	"<li>Release Notes: #{movie.releasenotes}</li>" if movie.releasenotes%>
+18: 			</ul>
+19: 			<% if movie.releases %>
+20: 			<h4>Release</h4>
+21: 				<ul class="releaselist">
+22: 				<% movie.releases.each do |f| %>
+
+    app/views/movies/_movie_highlight.html.erb:19
+    app/views/movies/index.html.erb:2
+    app/controllers/movies_controller.rb:7:in `index'
+
+Rendered rescues/_trace (56.8ms)
+Rendered rescues/_request_and_response (1.6ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MoviesController#index (for 127.0.0.1 at 2009-11-07 16:33:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"movies"}
+  [4;35;1mMovie Load (1.4ms)[0m   [0mSELECT * FROM "movies" [0m
+Rendering template within layouts/application
+Rendering movies/index
+  [4;36;1mDownload Load (0.4ms)[0m   [0;1mSELECT * FROM "downloads" WHERE ("downloads".resource_id = 1 AND "downloads".resource_type = 'Movie') LIMIT 1[0m
+  [4;35;1mRelease Load (0.3ms)[0m   [0mSELECT * FROM "releases" WHERE ("releases".download_id = 1) [0m
+  [4;36;1mReleaseType Load (0.3ms)[0m   [0;1mSELECT * FROM "release_types" WHERE ("release_types"."id" = 1) [0m
+
+ActionView::TemplateError (undefined method `locations' for #<Release:0x24fd790>) on line #23 of app/views/movies/_movie_highlight.html.erb:
+20: 			<h4>Release</h4>
+21: 				<ul class="releaselist">
+22: 				<% movie.download.releases.each do |f| %>
+23: 				<li><%=h f.release_type.name %>: <%=h f.locations.first.location %></li>
+24: 				<% end %>
+25: 				</ul>
+26: 			<% end %>
+
+    app/views/movies/_movie_highlight.html.erb:23
+    app/views/movies/_movie_highlight.html.erb:22
+    app/views/movies/index.html.erb:2
+    app/controllers/movies_controller.rb:7:in `index'
+
+Rendered rescues/_trace (57.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)

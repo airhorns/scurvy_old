@@ -37,11 +37,12 @@ namespace :rz do
       end
       
       # @todo Add in parsing of release types
-      d.releases << Release.new(:release_type => ReleaseType.find_by_name('Unknown'))
+      r =  Release.new(:release_type => ReleaseType.find_by_name('Unknown'))
       
       Find.find(path) do |x|
-        d.locations << Location.new(:location => x)
+        r.locations << Location.new(:location => x)
       end
+      d.releases << r
       d.save!
     end
 

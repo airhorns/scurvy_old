@@ -2,7 +2,7 @@ class CreateLocations < ActiveRecord::Migration
   def self.up
     create_table :locations do |t|
       t.string :location
-      t.integer :download_id
+      t.integer :release_id
 
       t.timestamps
     end
