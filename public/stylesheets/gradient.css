@@ -1,0 +1,39 @@
+#container .success,
+#container .error,
+#container .warning,
+#container .tip {
+	background-image: url(../images/gradient_large_dark.png);
+	background-position: left 1px;
+	background-repeat: repeat-x;
+}
+
+#container .box,
+#container input,
+#container textarea,
+#container table tr {
+	background: url(../images/gradient_small_dark.png) repeat-x left 1px;
+}
+
+#container .quick-links li,
+#container .main-nav,
+#container .sub-nav,
+#container table tr.odd td,
+#dashboard .widget h5,
+#dashboard .widget .widget-content,
+#login #container {
+	background-image: url(../images/gradient_small_dark.png);
+	background-position: left 1px;
+	background-repeat: repeat-x;
+}
+
+#login #container {
+	background-position: left 38px;
+}
+
+#container .sitemeta,
+#container .sidebar .widget-head h5,
+#container .sidebar .widget-content,
+#container .sidebar .widget input {
+	background-image: url(../images/gradient_small_light.png);
+	background-repeat: repeat-x;
+}

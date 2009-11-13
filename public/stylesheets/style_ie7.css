@@ -1,0 +1,22 @@
+#login #container p.password {
+	width: 115px;
+}
+#login #container .btn {
+	margin: 15px 5px 0 0;
+}
+#container table .actions input {
+	border: 0!important;
+}
+
+.widget-head h5 {
+	margin-top: -1px;
+}
+
+input:focus,
+textarea:focus {
+	border: none!important;
+	outline: none!important;
+}
+#container .btn {
+	
+}

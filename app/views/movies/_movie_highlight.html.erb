@@ -20,7 +20,7 @@
 			<h4>Release</h4>
 				<ul class="releaselist">
 				<% movie.download.releases.each do |f| %>
-				<li><%=h f.release_type.name %>: <%=h f.locations.first.location %></li>
+				<li><%=h f.release_type.name %>: <%=h File.basename(f.locations.first.location) %></li>
 				<% end %>
 				</ul>
 			<% end %>

@@ -1,0 +1,56 @@
+#login #container p.password {
+	margin-left: 5px;
+}
+
+#container .success,
+#container .error,
+#container .warning,
+#container .tip,
+#container .box,
+#container input,
+#container textarea,
+#container table tr,
+#container .quick-links li,
+#container .main-nav,
+#container .sub-nav,
+#container table tr.odd td,
+#dashboard .widget h5,
+#dashboard .widget .widget-content,
+#login #container,
+#container .widget,
+#login #container,
+#container .sitemeta,
+#container .sidebar .widget-head h5,
+#container .sidebar .widget-content,
+#container .sidebar .widget input {
+	background-image: none;
+}
+
+#container .widget {
+	padding-top: 0!important;
+}
+
+#container .widget-head h5 {
+	margin: 0!important;
+}
+
+#container .widget-head a.remove {
+	right: 20px;
+	top: 20px;
+}
+
+#container .widget-head a.collapseDown {
+	right: 36px;
+	top: 20px;
+}
+
+#container .widget-head a.collapseUp {
+}
+
+#container .widget,
+#container .widget-head {
+	padding-top: 0!important;
+}
+#container .widget-head h5 {
+	top: -15px!important;
+}
