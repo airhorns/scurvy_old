@@ -1,12 +1,9 @@
 <% @titre = "Movies" %>
-<%= render(:partial => "movie_highlight", :locals => {:movie => @movies.first }) if @movies.third %>
-
-<div class="span-11 box">
-	<h2>New Movies</h2>
-<%= render(:partial => "movie_list", :object => @movies )%>
+<div id="movielists" class="span-10">
+<%= render(:partial => "movie_list", :object => @movies, :locals => {:boxtitle => "New Movies"}) if !@movies.empty? %>
+<%= render(:partial => "movie_list", :object => @unapproved_movies, :locals => {:boxtitle => "Unapproved Movies"}) if @unapproved_movies %>
 </div>
 
-<div class="span-3 box">
-	<h2>Actions</h2>
-	<%= link_to 'New movie', new_movie_path %>
+<div id="mainmovie" class="span-10 last">
+<%= render(:partial => "movie_details", :locals => {:boxtitle => "Newest Addition" || @boxtitle, :movie => @movie || @movies.first }) if @movie || @movies.first %>
 </div>

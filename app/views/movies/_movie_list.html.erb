@@ -1,15 +1,14 @@
-<div class="movie downloadlist ">
+<% boxtitle ||= "Movies"%>
+<h2><%=	boxtitle %></h2>
+<div class="movie downloadlist">
 <table>
   <tr>
     <th class="title">Title</th>
 	<th>IMDB Rating</th>
-	<th>Synopsis</th>
     <th>Year</th>
     <th>Director</th>
     <th>Length</th>
-    <!-- <th>Release Type</th>
-    <th>Release Notes</th>
-    <th>Language</th> -->
+	<th>Actions</th>
   </tr>
 
 <% movie_list.each do |movie| %>
@@ -23,19 +22,29 @@
 	else 
 		movie.imdbrating
 	end %></td>
-	<td><%=h movie.synopsis %></td>
     <td><%=h movie.director %></td>
 	<td><%=h movie.year %></td>    
-    <td><%= 
-	if movie.length 
-		length_of_time_in_words(movie.length.minutes) 
-	end %></td>
-    <!-- <td><%=h movie.releasetype %></td>
-    <td><%=h movie.releasenotes %></td>
-    <td><%=h movie.language %></td> -->
-    <!-- <td><%= link_to 'Show', movie %></td>
-    <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-    <td><%= link_to 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete %></td> -->
+    <td><%= movie.length ? length_of_time_in_words(movie.length.minutes) : " -- " %></td>
+	<td class="actions">
+		<%= link_to_remote( "", 
+							:update => "mainmovie", 
+							:url => { :action => "show", :id => movie.id}, 
+							:method => :get, 
+							:html => {
+								:class => "ss_sprite ss_film_go"
+								}) 
+		%>
+		<%= link_to '', edit_movie_path(movie), :class => "ss_sprite ss_film_edit" %>
+		<%= link_to_remote( "", 
+							:update => "mainmovie", 
+							:url => { :action => "show", :id => movie.id}, 
+							:complete => "$$('.filelink').each(function(link){console.log(link); new Effect.Highlight(link)});",
+							:method => :get, 
+							:html => {
+								:class => "ss_sprite ss_arrow_down"
+								}) 
+		%>
+	</td>
   </tr>
 <% end %>
 </table>

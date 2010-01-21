@@ -46,6 +46,17 @@ class ApplicationController < ActionController::Base
     end
     
     def tagline
-      @tagline = "yo ho, me harties."
+      if !session[:tagline]
+        a = [
+          "sliced bread pales in comparison to scurvy.",
+          "scurvy is chuck norris' favourite web site.",
+          "the disease, and the website, is no laughing matter.",
+          "scurvy: dangerous for your limbs.",
+          "drink more oj.",
+          "yo (ho), being a pirate would actually suck these days. downloading from scurvy is the life for me.",
+          "the scurv."]
+        session[:tagline] = a[rand(a.length)]
+      end
+      @tagline = session[:tagline]
     end
 end

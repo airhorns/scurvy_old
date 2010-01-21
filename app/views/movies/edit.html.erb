@@ -1,60 +1,66 @@
 <h1>Editing movie</h1>
-
+<div class="span-7">
+	<h2>Movie Info</h2>
 <% form_for(@movie) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+	<%= f.label :title %><br />
+	<%= f.text_field :title, :class => "span-6 last" %>
   </p>
   <p>
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
+	<%= f.label :year %><br />
+	<%= f.text_field :year, :class => "span-3" %>
   </p>
   <p>
-    <%= f.label :director %><br />
-    <%= f.text_field :director %>
+	<%= f.label :director %><br />
+	<%= f.text_field :director, :class => "span-3" %>
   </p>
   <p>
-    <%= f.label :imdb %><br />
-    <%= f.text_field :imdb %>
+	<%= f.label :imdbid, "IMDB ID" %> 
+	<%= link_to_remote( "change", 
+							:update => "imdbchange", 
+							:url => { :action => "imdb", :id => @movie.id}, 
+							:method => :get, 
+							:before => "$('imdbchange').update(new Element('img', {src: '/images/loader.gif'})); $('imdb').show();",
+							:html => {
+								:class => "small"
+								})
+		%>
+<br />
+	<%= f.text_field :imdbid, :class => "span-3", :disabled => true %>
+
+  </p>
+
+  <p>
+	<%= f.label :imdbrating, "IMDB Rating" %><br />
+	<%= f.text_field :imdbrating, :class => "span-3" %>
   </p>
   <p>
-    <%= f.label :extrating %><br />
-    <%= f.text_field :extrating %>
+	<%= f.label :synopsis %><br />
+	<%= f.text_area :synopsis %>
   </p>
   <p>
-    <%= f.label :synopsis %><br />
-    <%= f.text_area :synopsis %>
+	<%= f.label :tagline %><br />
+	<%= f.text_area :tagline, :class => "short" %>
   </p>
   <p>
-    <%= f.label :tagline %><br />
-    <%= f.text_area :tagline %>
+	<%= f.label :length %><br />
+	<%= f.text_field :length, :class => "span-2" %>
   </p>
   <p>
-    <%= f.label :length %><br />
-    <%= f.text_field :length %>
+	<%= f.label :language %><br />
+	<%= f.text_field :language, :class => "span-2" %>
   </p>
   <p>
-    <%= f.label :releasetype %><br />
-    <%= f.text_field :releasetype %>
-  </p>
-  <p>
-    <%= f.label :releasenotes %><br />
-    <%= f.text_field :releasenotes %>
-  </p>
-  <p>
-    <%= f.label :addedby %><br />
-    <%= f.text_field :addedby %>
-  </p>
-  <p>
-    <%= f.label :language %><br />
-    <%= f.text_field :language %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
+	<%= f.submit 'Update' %>
   </p>
 <% end %>
-
-<%= link_to 'Show', @movie %> |
-<%= link_to 'Back', movies_path %>
+</div>
+<div class="span-13 last">
+	<div id="imdb" style="display: none;">
+		<h2>Movie IMDB Information</h2>
+		<div id="imdbchange"></div>
+	</div>
+	<%= render(:partial => "downloads/download_releases_info") %>
+</div>

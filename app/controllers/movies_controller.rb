@@ -1,11 +1,20 @@
 class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.xml
+  before_filter :latest_movies
+  
   def index
-    @movies = Movie.all
-
+    page = params[:page] || 1
+    @movies             = Movie.paginate :page => params[:page], :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', true]
+    @unapproved_movies  = Movie.find(:all, :limit => 10, :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', false])
+    
     respond_to do |format|
       format.html # index.html.erb
+      format.js {
+        render :update do |page|
+          page.replace_html 'movielist', :partial => 'movie_list', :locals => {:movie_list => @movies}
+        end
+      }
       format.xml  { render :xml => @movies }
     end
   end
@@ -14,8 +23,9 @@ class MoviesController < ApplicationController
   # GET /movies/1.xml
   def show
     @movie = Movie.find(params[:id])
-
-    respond_to do |format|
+    
+    respond_to do |format| 
+      format.js { render(:partial => 'movie_details', :locals => {:movie => @movie})}
       format.html # show.html.erb
       format.xml  { render :xml => @movie }
     end
@@ -35,8 +45,17 @@ class MoviesController < ApplicationController
   # GET /movies/1/edit
   def edit
     @movie = Movie.find(params[:id])
+    @release_types = ReleaseType.find(:all, :conditions => ['release_types.applies_to = ? OR ?', 'movie', nil])
   end
-
+  
+  def imdb
+    @movie = Movie.find(params[:id])
+    respond_to do |format| 
+      format.js { render(:partial => 'imdb')}
+      format.xml  { render :xml => @movie }
+    end
+  end
+  
   # POST /movies
   # POST /movies.xml
   def create
@@ -62,7 +81,7 @@ class MoviesController < ApplicationController
     respond_to do |format|
       if @movie.update_attributes(params[:movie])
         flash[:notice] = 'Movie was successfully updated.'
-        format.html { redirect_to(@movie) }
+        format.html { redirect_to(movies_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -82,4 +101,28 @@ class MoviesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
+  def imdbfetch
+    @movie = Movie.find(params[:id])
+    @imdb_movie = Imdb::Movie.new(params[:movie][:imdbid])
+    @autoupdate = params[:autoupdate] ||= false
+    
+    render :update do |page|
+      if !@imdb_movie.nil?
+        if @autoupdate
+          #haven't done this yet
+        end
+        page.replace_html 'imdbresults', :partial => 'imdb_movie'
+      else
+        page.replace_html 'imdbresults', "No IMDB film found."
+      end
+    end
+  end
+  
+  private
+  def latest_movies
+    @latest_movies = Movie.find(:all, :include => [:download], :limit => 5, :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', true])
+  end
+  
 end
