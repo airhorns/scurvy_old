@@ -1,7 +1,7 @@
 <% @titre = "Movies" %>
 <div id="movielists" class="span-10">
-<%= render(:partial => "movie_list", :object => @movies, :locals => {:boxtitle => "New Movies"}) if !@movies.empty? %>
-<%= render(:partial => "movie_list", :object => @unapproved_movies, :locals => {:boxtitle => "Unapproved Movies"}) if @unapproved_movies %>
+<%= render(:partial => "movie_list", :object => @movies, :locals => {:boxtitle => "New Movies"}) if ! @movies.blank? %>
+<%= render(:partial => "movie_list", :object => @unapproved_movies, :locals => {:boxtitle => "Unapproved Movies"}) if ! @unapproved_movies.blank? %>
 </div>
 
 <div id="mainmovie" class="span-10 last">

@@ -82,3 +82,6 @@ h2 {
 textarea.inline, textarea.short {
 	height: 2em;
 }
+input.autocomplete {
+	color: #AAA;
+}

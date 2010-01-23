@@ -1,8 +1,8 @@
 class CreateLocations < ActiveRecord::Migration
   def self.up
     create_table :locations do |t|
-      t.string :location
-      t.integer :release_id
+      t.string :location, :null => false
+      t.integer :release_id, :null => false
 
       t.timestamps
     end

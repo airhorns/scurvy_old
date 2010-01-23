@@ -1,7 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :invitations
+  map.resources :tracks
+  map.resources :artists
+  map.resources :albums, :collection => { :autocomplete_for_album_name => :get}
+
   map.resources :movies, :member => { :imdb => :get, :imdbfetch => :post}
   map.resources :releases
   map.resources :downloads
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -37,7 +43,14 @@ ActionController::Routing::Routes.draw do |map|
   # map.root :controller => "welcome"
 
   # See how all your routes lay out with "rake routes"
-  map.resource :user_session
+  map.login '/login', :controller => "user_sessions", :action => "new", :conditions => { :method => :get }
+  map.connect '/login', :controller => "user_sessions", :action => "create", :conditions => { :method => :post }
+  
+  map.logout '/logout', :controller => "user_sessions", :action => "destroy"
+  
+  map.signup  '/signup', :controller => "users", :action => "new", :conditions => { :method => :get }
+  map.signup  '/signup', :controller => "users", :action => "create", :conditions => { :method => :post }
+  
   map.root :controller => "user_sessions", :action => "new" # optional, this just sets the root route
   
   map.resource :account, :controller => "users"

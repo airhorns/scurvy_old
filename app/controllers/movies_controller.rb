@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.xml
-  before_filter :latest_movies
+  before_filter :latest_movies, :require_user
   
   def index
     page = params[:page] || 1

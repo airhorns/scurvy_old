@@ -16,4 +16,14 @@ module ApplicationHelper
       end.compact.join(' ')
     end
   end
+  
+  def clock_from_ms(ms) 
+    s = ms/1000
+    puts s
+    m = (s/60).floor
+    puts m
+    s = s - m * 60
+    puts s
+    "#{m}:#{s}"
+  end
 end

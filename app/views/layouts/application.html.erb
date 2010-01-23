@@ -16,7 +16,6 @@
 		</title>
 		
 		<%= javascript_include_tag :defaults %>
-		<%= javascript_include_tag "scurvy" %>
 	</head>
 	<body>
 		<div class="container">
@@ -27,42 +26,15 @@
 		            </div>
 		        </div>
 				<div id="account">
-						Welcome <%=h current_user.login %> | <%= link_to "Profile", account_path %> | <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+						Welcome <%=h current_user.login %> | <%= link_to "Profile", account_path %> | <%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
 				</div>
 				<div id="nav">
 					<% semantic_menu do |root|
 					  root.add "dashboard", root_path
 					  root.add "movies", movies_path
+					  root.add "music", albums_path
 					end %>
 				</div>
-		        <div class="col width_full last" style="display: none;">
-		            <div class="main-nav">
-		                <ul class="menu">
-		                    <li><a>dashboard</a></li>
-		                    <li class="active"><a href="page.html">add</a></li>
-		                    <li><a href="page.html">manage</a></li>
-		                    <li><a href="page.html">users</a></li>
-		                    <li><a href="page.html">statistics</a></li>
-		                </ul>
-		            </div>
-		            <div class="sub-nav">
-						<a class="quicks">Quick Links</a>
-						<ul class="quick-links">
-		                    <li><a href="#">Add new post</a></li>
-		                    <li><a href="page.html">View statistcs</a></li>
-		                    <li><a href="page.html">Setting</a></li>
-		                    <li><a href="page.html">Permissions</a></li>
-		                    <li><a href="page.html">link</a></li>
-						</ul>
-		                <ul class="submenu">
-		                    <li class="active"><a>post</a></li>
-		                    <li><a href="page.html">page</a></li>
-		                    <li><a href="page.html">category</a></li>
-		                    <li><a href="page.html">media</a></li>
-		                    <li><a href="page.html">link</a></li>
-		                </ul>
-		            </div>
-		        </div>
 		    </div>
 		    <!-- #header end -->
 		    <div id="content">

@@ -23,6 +23,9 @@ Rails::Initializer.run do |config|
   config.gem "imdb"
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "rbrainz"
+  config.gem "scrobbler"
+  config.gem "ruby-mp3info", :lib => 'mp3info'
+  config.gem "simple_autocomplete"
   
   config.action_controller.relative_url_root = ""
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -44,3 +47,5 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
+Scrobbler::Base::api_key = "cc85b6d4313e40450230872430b4d631"
