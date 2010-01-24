@@ -34,14 +34,17 @@
 					  root.add "dashboard", account_path
 					  root.add "movies", movies_path
 					  root.add "music", albums_path
-					  root.add "invites", invitations_path
+					  root.add "invites (#{current_user.invitation_limit})", invitations_path
 					end %>
 				</div>
 		    </div>
 		    <!-- #header end -->
 		    <div id="content">
 		        <div class="sidebar span-4">
-	               	<%= render(:partial => controller.controller_name + "/sidebar" ) %>
+	               	<%= begin 
+						render(:partial => controller.controller_name + "/sidebar" ) 
+						rescue ActionView::MissingTemplate	
+						end%>
 	                <div class="widget">
 	                    <div class="widget-head">
 	                        <h2>Search scurvy</h2>

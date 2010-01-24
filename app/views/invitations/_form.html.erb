@@ -1,0 +1,12 @@
+<% if current_user.invitation_limit > 0 %>
+<% form_for @invitation do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :recipient_email %><br />
+    <%= f.text_field :recipient_email %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+<% else %>
+<p>You don't have any invitations to send.</p>
+<% end %>

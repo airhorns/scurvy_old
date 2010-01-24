@@ -1,0 +1,29 @@
+<% @titre = "Invitations" %>
+<div class="span-7">
+	<h2>Sent Invitations</h2>
+<table>
+  <tr>
+    <th>Recipient</th>
+	<th>Sent At</th>
+    <th>Used</th>
+    <th>Actions</th>
+  </tr>
+
+<% @invitations.each do |invite| %>
+  <tr id="invite_<%= invite.id %>" class="<%= cycle("", "altrow")%>">
+	<td><%=h invite.recipient_email %></td>
+	<td><%=h invite.sent_at %></td>
+    <td><%=h invite.used %></td>
+	<td class="actions">
+		<%= link_to "Resend", {:action => "resend", :id => invite.id} unless invite.used %>
+		<%= link_to "Delete", invite, :confirm => "Are you sure you want to delete this invite?", :method => :delete unless invite.used %>
+	</td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @invitations %>
+</div>
+<div class="span-4">
+	<h2>Invite someone</h2>
+	<%= render :partial => 'form' %>
+</div>

@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :invitations
+  
+  map.resources :invitations, :member => { :resend => :get }
   map.resources :tracks, :collection => { :autocomplete_for_track_name => :get}
   map.resources :artists, :collection => { :autocomplete_for_artist_name => :get}
   map.resources :albums, :collection => { :autocomplete_for_album_name => :get}
@@ -48,8 +49,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.logout '/logout', :controller => "user_sessions", :action => "destroy"
   
-  map.signup  '/signup', :controller => "users", :action => "new", :conditions => { :method => :get }
-  map.signup  '/signup', :controller => "users", :action => "create", :conditions => { :method => :post }
+  
+  map.signup  '/signup/:invitation_token', :controller => "users", :action => "new", :conditions => { :method => :get }
+  map.signup  '/signup/:invitation_token', :controller => "users", :action => "create", :conditions => { :method => :post }
   
   map.root :controller => "user_sessions", :action => "new" # optional, this just sets the root route
   

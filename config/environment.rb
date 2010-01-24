@@ -27,6 +27,8 @@ Rails::Initializer.run do |config|
   config.gem "ruby-mp3info", :lib => 'mp3info'
   config.gem "simple_autocomplete"
   config.gem "app"
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx',:version => '1.3.11'
+  
   config.action_controller.relative_url_root = ""
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -46,6 +48,19 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+  config.action_mailer.delivery_method = :smtp
+  
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,  
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => "scurvvy.com",
+    :authentication => :plain,
+    :user_name => "admin@scurvvy.info",
+    :password => "orturren33"
+  }
+  
 end
 
 Scrobbler::Base::api_key = "cc85b6d4313e40450230872430b4d631"
+
