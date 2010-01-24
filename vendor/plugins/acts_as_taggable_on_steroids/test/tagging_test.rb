@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/abstract_unit'
 
-class TaggingTest < ActiveSupport::TestCase
+class TaggingTest < Test::Unit::TestCase
+  fixtures :tags, :taggings, :posts
+  
   def test_tag
     assert_equal tags(:good), taggings(:jonathan_sky_good).tag
   end

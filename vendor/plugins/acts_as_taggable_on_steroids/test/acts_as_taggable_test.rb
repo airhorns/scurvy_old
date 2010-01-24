@@ -1,15 +1,13 @@
 require File.dirname(__FILE__) + '/abstract_unit'
 
-class ActsAsTaggableOnSteroidsTest < ActiveSupport::TestCase
+class ActsAsTaggableOnSteroidsTest < Test::Unit::TestCase
+  fixtures :tags, :taggings, :posts, :users, :photos, :subscriptions, :magazines
+
   def test_find_related_tags_with
     assert_equivalent [tags(:good), tags(:bad), tags(:question)], Post.find_related_tags("nature")
     assert_equivalent [tags(:nature)], Post.find_related_tags([tags(:good)])
     assert_equivalent [tags(:bad), tags(:question)], Post.find_related_tags(["Very Good", "Nature"])        
     assert_equivalent [tags(:bad), tags(:question)], Post.find_related_tags([tags(:good), tags(:nature)])
-  end
-  
-  def test_find_tagged_with_include_and_order
-    assert_equal photos(:sam_sky, :sam_flower, :jonathan_dog),  Photo.find_tagged_with("Nature", :order => "photos.title DESC", :include => :user)
   end
   
   def test_find_related_tags_with_non_existent_tags
@@ -202,8 +200,8 @@ class ActsAsTaggableOnSteroidsTest < ActiveSupport::TestCase
     assert_equivalent ["Nature", "Question"], posts(:jonathan_rain).tag_list
     posts(:jonathan_rain).taggings.reload
     
-    # Only an update of the posts table should be executed, the other two queries are for savepoints
-    assert_queries 3 do
+    # Only an update of the posts table should be executed
+    assert_queries 1 do
       posts(:jonathan_rain).update_attributes!(:tag_list => posts(:jonathan_rain).tag_list.to_s)
     end
     
@@ -373,12 +371,14 @@ class ActsAsTaggableOnSteroidsTest < ActiveSupport::TestCase
   end
 end
 
-class ActsAsTaggableOnSteroidsFormTest < ActiveSupport::TestCase
+class ActsAsTaggableOnSteroidsFormTest < Test::Unit::TestCase
+  fixtures :tags, :taggings, :posts, :users, :photos
+  
   include ActionView::Helpers::FormHelper
   
   def test_tag_list_contents
     fields_for :post, posts(:jonathan_sky) do |f|
-      assert_match /Nature, Very good/, f.text_field(:tag_list)
+      assert_match /Very good, Nature/, f.text_field(:tag_list)
     end
   end
 end

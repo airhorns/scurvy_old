@@ -45,12 +45,12 @@ class Tag < ActiveRecord::Base
       end_at = sanitize_sql(["#{Tagging.table_name}.created_at <= ?", options.delete(:end_at)]) if options[:end_at]
       
       conditions = [
-        (sanitize_sql(options.delete(:conditions)) if options[:conditions]),
+        options.delete(:conditions),
         start_at,
         end_at
       ].compact
       
-      conditions = conditions.join(' AND ') if conditions.any?
+      conditions = conditions.any? ? conditions.join(' AND ') : nil
       
       joins = ["INNER JOIN #{Tagging.table_name} ON #{Tag.table_name}.id = #{Tagging.table_name}.tag_id"]
       joins << options.delete(:joins) if options[:joins]

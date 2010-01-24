@@ -12,10 +12,9 @@ end
 
 # Search for fixtures first
 fixture_path = File.dirname(__FILE__) + '/fixtures/'
-ActiveSupport::Dependencies.load_paths.insert(0, fixture_path)
+Dependencies.load_paths.insert(0, fixture_path)
 
-require "active_record/test_case"
-require "active_record/fixtures"
+require 'active_record/fixtures'
 
 require File.dirname(__FILE__) + '/../lib/acts_as_taggable'
 require_dependency File.dirname(__FILE__) + '/../lib/tag_list'
@@ -27,15 +26,11 @@ ActiveRecord::Base.establish_connection(ENV['DB'] || 'mysql')
 
 load(File.dirname(__FILE__) + '/schema.rb')
 
-class ActiveSupport::TestCase #:nodoc:
-  include ActiveRecord::TestFixtures
-  
-  self.fixture_path = File.dirname(__FILE__) + "/fixtures/"
-  
+Test::Unit::TestCase.fixture_path = fixture_path
+
+class Test::Unit::TestCase #:nodoc:
   self.use_transactional_fixtures = true
   self.use_instantiated_fixtures  = false
-  
-  fixtures :all
   
   def assert_equivalent(expected, actual, message = nil)
     if expected.first.is_a?(ActiveRecord::Base)

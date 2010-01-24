@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/abstract_unit'
 
-class TagListTest < ActiveSupport::TestCase
+class TagListTest < Test::Unit::TestCase
   def test_from_leaves_string_unchanged
     tags = '"One  ", Two'
     original = tags.dup
