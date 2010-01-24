@@ -2,29 +2,24 @@
 
 <% form_for(@artist) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :id %><br />
-    <%= f.text_field :id %>
-  </p>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :rank %><br />
-    <%= f.text_field :rank %>
   </p>
   <p>
     <%= f.label :url %><br />
     <%= f.text_field :url %>
   </p>
   <p>
+    <%= f.label :image_url, "Artist Photo URL" %><br />
+    <%= f.text_field :image_url %>
+  </p>
+  <p>
     <%= f.label :listeners %><br />
     <%= f.text_field :listeners %>
   </p>
   <p>
-    <%= f.label :mb_id %><br />
+    <%= f.label :mb_id, "Musicbrainz ID" %><br />
     <%= f.text_field :mb_id %>
   </p>
   <p>

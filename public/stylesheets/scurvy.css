@@ -9,6 +9,9 @@ h3 span.subtitle {
 	font-size: 12px;
 	font-weight: normal;
 }
+h5 {
+	margin-bottom: 5px;
+}
 /* NAV SECTION */
 #header {
 	height: 1em;
@@ -103,7 +106,6 @@ input.autocomplete.focused {
 	overflow: hidden;
 	z-index: 99999;
 }
-
 .ac_results ul {
 	width: 100%;
 	list-style-position: outside;
@@ -111,7 +113,6 @@ input.autocomplete.focused {
 	padding: 0;
 	margin: 0;
 }
-
 .ac_results li {
 	margin: 0px;
 	padding: 2px 5px;
@@ -131,16 +132,34 @@ input.autocomplete.focused {
 	line-height: 16px;
 	overflow: hidden;
 }
-
 .ac_loading {
 	background: white url('indicator.gif') right center no-repeat;
 }
-
 .ac_odd {
 	background-color: #eee;
 }
-
 .ac_over {
 	background-color: #2F79BA;
 	color: white;
+}
+
+/*SPECIFIC CONTAINERS */
+.minialbum {
+	padding:.8em;
+	margin-bottom:1em;
+	border:2px solid #80BBD8;
+	background:#C2E0EF;
+	color:#092844;
+}
+.minialbum h5 {
+	margin-bottom: 0px;
+}
+.minialbum h5 a {
+	color:#000;
+}
+.minialbum h5 a:hover {
+	color:#092844;
+}
+.minialbum p {
+	margin-bottom: 0px;
 }

@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   config.gem "scrobbler"
   config.gem "ruby-mp3info", :lib => 'mp3info'
   config.gem "simple_autocomplete"
-  
+  config.gem "app"
   config.action_controller.relative_url_root = ""
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

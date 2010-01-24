@@ -5,6 +5,30 @@ require "#{RAILS_ROOT}/lib/tasks/movie_maker.rb"
 require "#{RAILS_ROOT}/lib/tasks/music_maker.rb"
 
 namespace :rz do  
+  task :add => :environment do 
+    %w{music movies}.each do |type|
+      first = true
+      count = 0
+      path_count = 0
+      puts "Searching #{App.downloads(type)} for #{type.pluralize}"
+      Find.find(App.downloads(type)) do |path|
+        path_count = path_count + 1
+        unless first
+          if Location.find_by_location(path).nil? and count < 10
+            count = count + 1
+            puts "#{type}: #{path}"
+            Object.const_get(type.capitalize+"Maker").scan_path(path)
+          else
+            Find.prune
+          end
+        else
+          first = false
+        end
+      end
+      puts "Done searching for #{type.pluralize}, #{path_count} paths scanned."
+    end
+  end
+  
   task :addmovie => :environment do
     MovieMaker.scan_path(ENV['movie'])
   end

@@ -1,0 +1,21 @@
+<div class="spethial span-10 last">
+	<h2><%=h boxtitle ||= "Artist Details"%></h2>
+	<div>
+		<h3><%=h artist.name %></h3>
+		<table>
+			<tr>
+				<td>Last.FM Listerners:</td>
+				<td><%=h link_to_if_both artist.listeners, artist.url %></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<h2>Albums by <%=h artist.name %></h2>
+		<% artist.albums.each do |album| %>
+		<div class="span-3 minialbum">
+			<h5><%= link_to album.name, album %></h5>
+			<p>Listeners: <%= album.listeners %></p>
+		</div>
+		<% end %>
+	</div>
+</div>

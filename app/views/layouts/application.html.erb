@@ -31,9 +31,10 @@
 				</div>
 				<div id="nav">
 					<% semantic_menu do |root|
-					  root.add "dashboard", root_path
+					  root.add "dashboard", account_path
 					  root.add "movies", movies_path
 					  root.add "music", albums_path
+					  root.add "invites", invitations_path
 					end %>
 				</div>
 		    </div>
@@ -47,7 +48,7 @@
 	                    </div>
 	                    <div class="widget-content">
 	                            <form>
-	                            <input type="text" class="span-2 last"/>
+	                            <input type="text" class="span-2 last" disabled/>
 	                            <input type="button" class="btn search" value="Search" />
 	                            </form>
 	                    </div>
@@ -68,7 +69,7 @@
 			<div class="clear"></div>
 		    <!--- #content end -->
 		    <div id="footer" class="span-22 push-1 last">
-<%=h @tagline %> Please give any feedback on this site to Harry.
+				<%=h @tagline %>
 		    </div>
 		</div>
 		<!-- #container end -->

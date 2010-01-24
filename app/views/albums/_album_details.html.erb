@@ -1,4 +1,4 @@
-<div class="spethial">
+<div class="spethial span-10 last">
 	<h2><%=h boxtitle ||= "Album Details"%></h2>
 	<div class="span-7 last">
 		<h3><%=h album.name %> <span class="subtitle">By <%=h album.artist.name %></span></h3>
@@ -27,7 +27,7 @@
 			<% end %>
 		</table>
 		<% if album.download.releases %>
-		<h3>Releases</h3>
+		<h5>Releases</h5>
 		<table class="releaselist span-7 last">
 			<tr>
 				<th>Quality</th>
@@ -51,5 +51,8 @@
 	<div class="span-3">
 	<%= image_tag(album.image_url, :class => "span-3", :alt => "album art") if album.image_url %>
 	</div>
-	<!-- <div class="clear"></div> -->
+	<%= render(:partial => "artists/artist_details", :locals => {:artist => album.artist}) %>
 </div>
+
+
+

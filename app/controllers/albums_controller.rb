@@ -37,14 +37,14 @@ class AlbumsController < ApplicationController
 
   # GET /albums/new
   # GET /albums/new.xml
-  def new
-    @album = Album.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @album }
-    end
-  end
+  # def new
+  #     @album = Album.new
+  # 
+  #     respond_to do |format|
+  #       format.html # new.html.erb
+  #       format.xml  { render :xml => @album }
+  #     end
+  #   end
 
   # GET /albums/1/edit
   def edit
@@ -54,20 +54,20 @@ class AlbumsController < ApplicationController
 
   # POST /albums
   # POST /albums.xml
-  def create
-    @album = Album.new(params[:album])
-
-    respond_to do |format|
-      if @album.save
-        flash[:notice] = 'Album was successfully created.'
-        format.html { redirect_to(@album) }
-        format.xml  { render :xml => @album, :status => :created, :location => @album }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @album.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  # def create
+  #   @album = Album.new(params[:album])
+  # 
+  #   respond_to do |format|
+  #     if @album.save
+  #       flash[:notice] = 'Album was successfully created.'
+  #       format.html { redirect_to(@album) }
+  #       format.xml  { render :xml => @album, :status => :created, :location => @album }
+  #     else
+  #       format.html { render :action => "new" }
+  #       format.xml  { render :xml => @album.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PUT /albums/1
   # PUT /albums/1.xml

@@ -1,0 +1,16 @@
+# An app config, provided by App: http://github.com/stephencelis/app
+---
+development: &development
+  loaded_at: <%= Time.zone.now.iso8601 %>
+  downloads:
+      movies: /Users/hornairs/Code/scurvy-test/movies
+      music: /Users/hornairs/Code/scurvy-test/music
+      
+test:
+  <<: *development
+
+production:
+  loaded_at: <%= Time.zone.now.iso8601 %>
+  downloads:
+      movies: /var/downloads/movies
+      music: /var/downloads/music

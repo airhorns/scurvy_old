@@ -52,10 +52,13 @@ class ApplicationController < ActionController::Base
           "sliced bread pales in comparison to scurvy.",
           "scurvy is chuck norris' favourite web site.",
           "the disease, and the website, is no laughing matter.",
-          "scurvy: dangerous for your limbs.",
+          "scurvy: make sure your limbs don't fall off.",
           "drink more oj.",
-          "yo (ho), being a pirate would actually suck these days. downloading from scurvy is the life for me.",
-          "the scurv."]
+          "really bad eggs, but really good files.",
+          "almost as good looking as roger's mom.",
+          "got any suggestions to make scurvy better? let harry know.",
+          "got any requests for files? let harry know.",
+          "I like it. Simple, easy to remember."]
         session[:tagline] = a[rand(a.length)]
       end
       @tagline = session[:tagline]

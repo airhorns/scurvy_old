@@ -2,7 +2,6 @@ require 'find'
 class MusicMaker
   def self.scan_path(path)
     if File.directory?(path) 
-      puts "Dir: #{path}"      
       first = true
       count = 0
       Find.find(path) do |x|
@@ -22,7 +21,6 @@ class MusicMaker
   
   def self.add_track(path)
     raise ArgumentError, "Must supply a path to a file to add a track" if File.directory?(path)
-    puts "File: #{path}"
     Mp3Info.open(path) do |mp3info|
       track = Track.from_id3tag(mp3info.tag)
       if(track.album.new_record?)

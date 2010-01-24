@@ -34,4 +34,9 @@ module ApplicationHelper
       'autocomplete_url' => send( "autocomplete_for_"+model+"_name_"+model.pluralize+"_path")
     }
   end
+  
+  def link_to_if_both(text, path)
+    return text if path.nil?
+    link_to text, path
+  end
 end
