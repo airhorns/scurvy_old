@@ -16,7 +16,12 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql
+  encoding: utf8
+  database: scurvy
   pool: 5
+  username: scurvy
+  password: orturren33
+  socket: /tmp/mysql.sock
+  host: localhost
   timeout: 5000
