@@ -22,6 +22,6 @@ production:
   pool: 5
   username: scurvy
   password: orturren33
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   host: localhost
   timeout: 5000
