@@ -1,0 +1,14 @@
+<% if !@latest_movies.nil? && !@latest_movies.empty? %>
+<div class="widget">
+	<h2>Latest Movies</h2>
+	<ul>
+		<% @latest_movies.each do |movie| %>
+		<li><%= link_to(movie.title, :controller => "movies", :action => 'show', :id => movie.id) %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<div class="widget">
+	<h2>Actions</h2>
+	<%= link_to 'New movie', new_movie_path %>
+</div>

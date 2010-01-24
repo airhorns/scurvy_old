@@ -45,7 +45,7 @@ class MoviesController < ApplicationController
   # GET /movies/1/edit
   def edit
     @movie = Movie.find(params[:id])
-    @release_types = ReleaseType.find(:all, :conditions => ['release_types.applies_to = ? OR ?', 'movie', nil])
+    @download = @movie.download if @movie
   end
   
   def imdb

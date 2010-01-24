@@ -1,0 +1,41 @@
+<div class="spethial">
+	<h2><%=h boxtitle ||= "Movie Details"%></h2>
+	<div class="span-5 last">
+		<h3><%=h movie.title %></h3>
+		<p class="synopsis"><%=h movie.synopsis %></p>
+		<ul>
+			<%=	"<li>Year: #{movie.year}</li>" if movie.year %>
+			<%=	"<li>Directed by: #{movie.director}</li>" if movie.director%>
+			<%= "<li>IMDB Rating: #{movie.imdbrating} #{link_to "Visit IMDB page", 'http://www.imdb.com/title/tt' + movie.imdbid}</li>" if movie.imdbid%>
+			<%=	"<li>Length: #{length_of_time_in_words(movie.length.minutes)}</li>" if movie.length%>
+			<%=	"<li>Language: #{movie.language}</li>" if movie.language%>
+			<%=	"<li>Release Type: #{movie.releasetype}</li>" if movie.releasetype%>
+			<%=	"<li>Release Notes: #{movie.releasenotes}</li>" if movie.releasenotes%>
+		</ul>
+		<% if movie.download.releases %>
+		<h4>Releases</h4>
+		<table class="releaselist span-5 last">
+			<tr>
+				<th>Quality</th>
+				<th>Location</th>
+				<th>Download</th>
+			</tr>
+			
+			<% movie.download.releases.each do |f| %>
+			<tr>
+				<td><%=h f.release_type.name %></td>
+				<td><%=h File.basename(f.locations.first.location)[0...25] %>...</td>
+				<td class="filelink"><%= link_to(" ", f, :class => "ss_sprite ss_arrow_down") %>
+			</tr>
+			<% end %>
+		</table>
+		<% else %>
+		<p>No releases at the moment. Make a <a href="#">request</a>.</p>
+		<% end %>
+		
+	</div>
+	<div class="span-5">
+	<%= image_tag(movie.posterurl, :class => "span-5", :alt => "movie poster") if movie.posterurl %>
+	</div>
+	<!-- <div class="clear"></div> -->
+</div>

@@ -1,0 +1,43 @@
+<p>
+  <b>Id:</b>
+  <%=h @track.id %>
+</p>
+
+<p>
+  <b>Artist:</b>
+  <%=h @track.artist_id %>
+</p>
+
+<p>
+  <b>Album:</b>
+  <%=h @track.album_id %>
+</p>
+
+<p>
+  <b>Lastfm:</b>
+  <%=h @track.lastfm_id %>
+</p>
+
+<p>
+  <b>Mb:</b>
+  <%=h @track.mb_id %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%=h @track.rank %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @track.url %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @track.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>

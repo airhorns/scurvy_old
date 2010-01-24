@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation
   before_filter :tagline
+  before_filter :fetch_release_types, :only => :edit
   
   private
     def current_user_session
@@ -58,5 +59,9 @@ class ApplicationController < ActionController::Base
         session[:tagline] = a[rand(a.length)]
       end
       @tagline = session[:tagline]
+    end
+    
+    def fetch_release_types
+      @release_types = ReleaseType.find(:all, :conditions => ['release_types.applies_to = ? OR ?', 'movie', nil])
     end
 end

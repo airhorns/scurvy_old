@@ -1,0 +1,6 @@
+<div class="widget">
+	<h2>Quick Jump</h2>
+	<% %w[album artist track].each do |model| %> 
+	<%= autocomplete_for_model(model) %>
+	<% end %>
+</div>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  name: 1
+  url: MyString
+  lastfm_id: 1
+  mb_id: 1
+  rank: 1
+  artist_id: 1
+
+two:
+  id: 1
+  name: 1
+  url: MyString
+  lastfm_id: 1
+  mb_id: 1
+  rank: 1
+  artist_id: 1

@@ -1,0 +1,36 @@
+<h1>Editing artist</h1>
+
+<% form_for(@artist) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :id %><br />
+    <%= f.text_field :id %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :rank %><br />
+    <%= f.text_field :rank %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :listeners %><br />
+    <%= f.text_field :listeners %>
+  </p>
+  <p>
+    <%= f.label :mb_id %><br />
+    <%= f.text_field :mb_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @artist %> |
+<%= link_to 'Back', artists_path %>

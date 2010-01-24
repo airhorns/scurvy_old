@@ -1,0 +1,34 @@
+<h1>Listing tracks</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Artist</th>
+    <th>Album</th>
+    <th>Lastfm</th>
+    <th>Mb</th>
+    <th>Rank</th>
+    <th>Url</th>
+    <th>Name</th>
+  </tr>
+
+<% @tracks.each do |track| %>
+  <tr>
+    <td><%=h track.id %></td>
+    <td><%=h track.artist_id %></td>
+    <td><%=h track.album_id %></td>
+    <td><%=h track.lastfm_id %></td>
+    <td><%=h track.mb_id %></td>
+    <td><%=h track.rank %></td>
+    <td><%=h track.url %></td>
+    <td><%=h track.name %></td>
+    <td><%= link_to 'Show', track %></td>
+    <td><%= link_to 'Edit', edit_track_path(track) %></td>
+    <td><%= link_to 'Destroy', track, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New track', new_track_path %>

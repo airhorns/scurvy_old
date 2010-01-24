@@ -1,0 +1,5 @@
+<%= render(:partial => "album_details", :locals => {:album => @album}) %>
+
+<div class="clear"></div>
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>

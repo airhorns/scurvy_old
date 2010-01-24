@@ -1,0 +1,9 @@
+<% @titre = "Music" %>
+<div id="albumlists" class="span-10">
+<%= render(:partial => "album_list", :object => @albums, :locals => {:boxtitle => "New Albums"}) if ! @albums.blank? %>
+<%= render(:partial => "album_list", :object => @unapproved_albums, :locals => {:boxtitle => "Unapproved Albums"}) if ! @unapproved_albums.blank? %>
+</div>
+
+<div id="mainalbum" class="span-10 last">
+<%# render(:partial => "album_details", :locals => {:boxtitle => "Newest Addition" || @boxtitle, :album => @album || @albums.first }) if @album || @albums.first %>
+</div>

@@ -1,0 +1,55 @@
+<div class="spethial">
+	<h2><%=h boxtitle ||= "Album Details"%></h2>
+	<div class="span-7 last">
+		<h3><%=h album.name %> <span class="subtitle">By <%=h album.artist.name %></span></h3>
+		<table>
+			<tr>
+				<td>Released:</td>
+				<td><%=h album.release_date %></td>
+			</tr>
+			<tr>
+				<td>Last.FM Listeners:</td>
+				<td><%=h album.listeners %></td>
+			</tr>
+		</table>
+		<table class="tracklisting">
+			<tr>
+				<th width="20px">#</th>
+				<th>Track</th>
+				<th>Duration</th>
+			<tr>
+			<% album.tracks.each do |t| %>
+			<tr>
+				<td><%=h t.position %>
+				<td><%=h t.name %></td>
+				<td><%=h clock_from_ms(t.duration) if t.duration %></td>
+			</tr>
+			<% end %>
+		</table>
+		<% if album.download.releases %>
+		<h3>Releases</h3>
+		<table class="releaselist span-7 last">
+			<tr>
+				<th>Quality</th>
+				<th>Files</th>
+				<th>Download</th>
+			</tr>
+			
+			<% album.download.releases.each do |f| %>
+			<tr>
+				<td><%=h f.release_type.name %></td>
+				<td><%=h f.locations.count %></td>
+				<td class="filelink"><%= link_to(" ", f, :class => "ss_sprite ss_arrow_down") %>
+			</tr>
+			<% end %>
+		</table>
+		<% else %>
+		<p>No releases at the moment. Make a <a href="#">request</a>.</p>
+		<% end %>
+		
+	</div>
+	<div class="span-3">
+	<%= image_tag(album.image_url, :class => "span-3", :alt => "album art") if album.image_url %>
+	</div>
+	<!-- <div class="clear"></div> -->
+</div>

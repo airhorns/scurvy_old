@@ -1,0 +1,44 @@
+<% boxtitle ||= "Albums"%>
+<h2><%=	boxtitle %></h2>
+
+<div class="movie downloadlist">
+<table>
+  <tr>
+    <th class="title">Title</th>
+    <th>Artist</th>
+	<th>Tracks</th>
+    <th>Last.FM</th>
+	<th>Actions</th>
+  </tr>
+
+<% album_list.each do |album| %>
+  <tr>
+    <td><%=h album.name %></td>
+    <td><%= link_to album.artist.name, artist_path(album.artist) %></td>
+    <td><%=h album.tracks.length %></td>
+    <td><%= link_to "link", album.url %></td>
+	<td class="actions">
+		<%= link_to_remote( "", 
+							:update => "mainalbum", 
+							:url => { :action => "show", :id => album.id}, 
+							:method => :get, 
+							:html => {
+								:class => "ss_sprite ss_cd_go"
+								}) 
+		%>
+		<%= link_to '', edit_album_path(album), :class => "ss_sprite ss_cd_edit" %>
+		<%= link_to_remote( "", 
+							:update => "mainalbum", 
+							:url => { :action => "show", :id => album.id}, 
+							:complete => "$$('.filelink').each(function(link){console.log(link); new Effect.Highlight(link)});",
+							:method => :get, 
+							:html => {
+								:class => "ss_sprite ss_arrow_down"
+								}) 
+		%>
+	</td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @albums %>
+</div>

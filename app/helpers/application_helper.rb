@@ -26,4 +26,12 @@ module ApplicationHelper
     puts s
     "#{m}:#{s}"
   end
+  
+  def autocomplete_for_model(model)
+    text_field_tag "auto_"+model+"_name", model.capitalize + ' Quick Search', {
+      :class => 'autocomplete quicksearch span-3', 
+      'basepath' => model.pluralize, 
+      'autocomplete_url' => send( "autocomplete_for_"+model+"_name_"+model.pluralize+"_path")
+    }
+  end
 end

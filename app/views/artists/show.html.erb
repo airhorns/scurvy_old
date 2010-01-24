@@ -1,0 +1,33 @@
+<p>
+  <b>Id:</b>
+  <%=h @artist.id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @artist.name %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%=h @artist.rank %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @artist.url %>
+</p>
+
+<p>
+  <b>Listeners:</b>
+  <%=h @artist.listeners %>
+</p>
+
+<p>
+  <b>Mb:</b>
+  <%=h @artist.mb_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to 'Back', artists_path %>

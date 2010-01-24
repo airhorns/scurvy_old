@@ -1,0 +1,54 @@
+<h1>Editing album</h1>
+<div class="span-7">
+	<h2>Album Info</h2>
+<% form_for(@album) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url, :class => "span-6"  %>
+    <%= link_to 'link', @album.url %>
+  </p>
+  <p>
+    <%= f.label :image_url, "Album Art URL" %><br />
+    <%= f.text_field :image_url, :class => "span-6" %>
+    <%= link_to 'link', @album.image_url %>
+  </p>
+  <p>
+    <%= f.label :lastfm_id, "Last.FM ID" %><br />
+    <%= f.text_field :lastfm_id %>
+  </p>
+  <p>
+    <%= f.label :artist_id %><br />
+    <%= f.text_field :artist_id, :class => "hidden" %>
+	<%= text_field_tag "auto_artist_name", @album.artist.name, {
+      :class => 'autocomplete span-3', 
+      'update' => '#album_artist_id', 
+      'autocomplete_url' => autocomplete_for_artist_name_artists_path}
+	%>
+  </p>
+  <p>
+    <%= f.label :release_date %><br />
+    <%= date_select "album", "release_date" %>
+  </p>
+  <p>
+    <%= f.label :listeners %><br />
+    <%= f.text_field :listeners, :disabled => true %><br />
+  </p>
+  <p>
+    <%= f.label :mb_id, "Music Brainz ID" %><br />
+    <%= f.text_field :mb_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+<%= link_to 'Show', @album %> | <%= link_to 'Back', albums_path %>
+</div>
+<div class="span-13 last">
+	<%= render(:partial => "downloads/download_releases_info") %>
+</div>
+
