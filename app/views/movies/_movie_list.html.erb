@@ -48,6 +48,6 @@
   </tr>
 <% end %>
 </table>
-<%= page_param ||= 'movie_page' %>
+<% page_param ||= 'movie_page' %>
 <%= will_paginate movie_list if movie_list.respond_to?('total_pages') %>
 </div>

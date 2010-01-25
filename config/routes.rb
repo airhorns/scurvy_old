@@ -8,9 +8,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :artists, :collection => { :autocomplete_for_artist_name => :get}
   map.resources :albums, :collection => { :autocomplete_for_album_name => :get}
 
-  map.resources :movies, :member => { :imdb => :get, :imdbfetch => :post}, :collection => { :autocomplete_for_track_name => :get}
+  map.resources :movies, :member => { :imdb => :get, :imdbfetch => :post}, :collection => { :autocomplete_for_movie_title => :get}
   map.resources :releases
-  map.resources :downloads
+  map.resources :downloads, :member => { :approve => :get } 
   
   # The priority is based upon order of creation: first created -> highest priority.
 

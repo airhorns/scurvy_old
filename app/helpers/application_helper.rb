@@ -27,16 +27,22 @@ module ApplicationHelper
     "#{m}:#{s}"
   end
   
-  def autocomplete_for_model(model)
-    text_field_tag "auto_"+model+"_name", model.capitalize + ' Quick Search', {
+  def autocomplete_for_model(model, field='name')
+    text_field_tag "auto_"+model+"_"+field, model.capitalize + ' Quick Search', {
       :class => 'autocomplete quicksearch span-3', 
       'basepath' => model.pluralize, 
-      'autocomplete_url' => send( "autocomplete_for_"+model+"_name_"+model.pluralize+"_path")
+      'autocomplete_url' => send( "autocomplete_for_"+model+"_"+field+"_"+model.pluralize+"_path")
     }
   end
   
   def link_to_if_both(text, path)
     return text if path.nil?
     link_to text, path
+  end
+  
+  def peg(model)
+    s = model.class.to_s.downcase!
+    p = s.pluralize
+    render :partial => "#{p}/#{s}_peg", :locals => { s.intern => model}
   end
 end

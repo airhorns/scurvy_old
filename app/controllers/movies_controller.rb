@@ -3,6 +3,10 @@ class MoviesController < ApplicationController
   # GET /movies.xml
   before_filter :latest_movies, :require_user
   
+  autocomplete_for :movie, :title do |movies|
+    movies.map{|movie| "#{movie.title} (#{movie.year}) --- #{movie.id}"}.join("\n")
+  end
+  
   def index
     page = params[:page] || 1
     @movies             = Movie.paginate :page => params[:movie_page], :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', true]

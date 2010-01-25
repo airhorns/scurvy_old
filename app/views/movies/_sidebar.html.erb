@@ -1,3 +1,7 @@
+<div class="widget">
+	<h2>Quick Search</h2>
+	<%= autocomplete_for_model('movie', 'title') %>
+</div>
 <% if !@latest_movies.nil? && !@latest_movies.empty? %>
 <div class="widget">
 	<h2>Latest Movies</h2>
@@ -10,5 +14,6 @@
 <% end %>
 <div class="widget">
 	<h2>Actions</h2>
-	<%= link_to 'New movie', new_movie_path %>
+	<%= link_to 'New movie', new_movie_path %><br/>
+	<%= link_to 'Fast Approval', downloads_path %>
 </div>
