@@ -5,8 +5,8 @@ class MoviesController < ApplicationController
   
   def index
     page = params[:page] || 1
-    @movies             = Movie.paginate :page => params[:page], :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', true]
-    @unapproved_movies  = Movie.find(:all, :limit => 10, :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', false])
+    @movies             = Movie.paginate :page => params[:movie_page], :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', true]
+    @unapproved_movies  = Movie.paginate :page => params[:unapproved_page], :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', false]
     
     respond_to do |format|
       format.html # index.html.erb

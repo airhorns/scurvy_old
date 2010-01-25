@@ -26,26 +26,7 @@
 			</tr>
 			<% end %>
 		</table>
-		<% if album.download.releases %>
-		<h5>Releases</h5>
-		<table class="releaselist span-7 last">
-			<tr>
-				<th>Quality</th>
-				<th>Files</th>
-				<th>Download</th>
-			</tr>
-			
-			<% album.download.releases.each do |f| %>
-			<tr>
-				<td><%=h f.release_type.name %></td>
-				<td><%=h f.locations.count %></td>
-				<td class="filelink"><%= link_to("", download_release_path(f), :class => "ss_sprite ss_arrow_down") %></td>
-			</tr>
-			<% end %>
-		</table>
-		<% else %>
-		<p>No releases at the moment. Make a <a href="#">request</a>.</p>
-		<% end %>
+		<%= render :partial => 'releases/releases_list', :locals => {:releases => album.download.releases} %>
 		
 	</div>
 	<div class="span-3">
