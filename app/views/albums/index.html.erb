@@ -1,7 +1,7 @@
 <% @titre = "Music" %>
 <div id="albumlists" class="span-10">
 <%= render(:partial => "album_list", :object => @albums, :locals => {:boxtitle => "New Albums"}) if ! @albums.blank? %>
-<%= render(:partial => "album_list", :object => @unapproved_albums, :locals => {:boxtitle => "Unapproved Albums"}) if ! @unapproved_albums.blank? %>
+<%= render(:partial => "album_list", :object => @unapproved_albums, :locals => {:boxtitle => "Unapproved Albums", :page_param => :unapproved_page}) if ! @unapproved_albums.blank? %>
 </div>
 
 <div id="mainalbum" class="span-10 last">

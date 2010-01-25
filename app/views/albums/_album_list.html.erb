@@ -40,5 +40,6 @@
   </tr>
 <% end %>
 </table>
-<%= will_paginate @albums %>
+<% page_param ||= 'albums_page' %>
+<%= will_paginate album_list, :param_name => page_param if album_list.respond_to?('total_pages')%>
 </div>

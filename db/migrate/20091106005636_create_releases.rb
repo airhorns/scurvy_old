@@ -3,6 +3,7 @@ class CreateReleases < ActiveRecord::Migration
     create_table :releases do |t|
       t.integer :download_id, :null => false
       t.integer :release_type_id, :null => false, :default => 0
+      t.string :root_path
       t.text :notes
 
       t.timestamps

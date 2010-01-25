@@ -2,25 +2,23 @@
 
 <table>
   <tr>
-    <th>Id</th>
     <th>Name</th>
-    <th>Rank</th>
     <th>Url</th>
     <th>Listeners</th>
-    <th>Mb</th>
+    <th>Mb</th>	
+	<th>Actions</th>
   </tr>
 
 <% @artists.each do |artist| %>
   <tr>
-    <td><%=h artist.id %></td>
     <td><%=h artist.name %></td>
-    <td><%=h artist.rank %></td>
     <td><%=h artist.url %></td>
     <td><%=h artist.listeners %></td>
     <td><%=h artist.mb_id %></td>
-    <td><%= link_to 'Show', artist %></td>
-    <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-    <td><%= link_to 'Destroy', artist, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', artist %>
+		<%= link_to 'Edit', edit_artist_path(artist) %>
+		<%= link_to 'Destroy', artist, :confirm => 'Are you sure?', :method => :delete %>
+	</td>
   </tr>
 <% end %>
 </table>

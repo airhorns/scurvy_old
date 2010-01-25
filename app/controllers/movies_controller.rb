@@ -77,6 +77,7 @@ class MoviesController < ApplicationController
   # PUT /movies/1.xml
   def update
     @movie = Movie.find(params[:id])
+    @download = @movie.download if @movie
 
     respond_to do |format|
       if @movie.update_attributes(params[:movie])

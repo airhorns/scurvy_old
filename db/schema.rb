@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100123164619) do
+ActiveRecord::Schema.define(:version => 20100124214335) do
 
   create_table "albums", :force => true do |t|
     t.string   "name",          :null => false
@@ -90,7 +90,15 @@ ActiveRecord::Schema.define(:version => 20100123164619) do
   create_table "releases", :force => true do |t|
     t.integer  "download_id",                    :null => false
     t.integer  "release_type_id", :default => 0, :null => false
+    t.string   "root_path"
     t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "retrievals", :force => true do |t|
+    t.integer  "location_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

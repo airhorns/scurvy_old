@@ -1,17 +1,17 @@
 class MovieMaker
   class << self
-    def scan_path(path)
+    def add_at_path(path)
       
       if File.directory?(path) 
         imdb = search_nfos(path)
         if imdb
-          puts "imdb from nfo: #{@imdb}"
+          puts "imdb from nfo: #{imdb}"
         end
       end
       
       if !imdb
         imdb = fetch_first_imdb_result_for_filename(File.basename(path))
-        puts "imdb from filename: #{@imdb}"
+        puts "imdb from filename: #{imdb}"
       end
       
       if imdb
@@ -27,23 +27,29 @@ class MovieMaker
       if movie.new_record? 
         d = Download.new(:approved => false, :active => true, :created_by => 0)
         d.resource = movie
-
+        movie.download = d
         if(movie.genres)
           d.tag_list.add(movie.genres) 
         end
       end
-      
+              
       # @todo Add in parsing of release types
-      r =  Release.new(:release_type => ReleaseType.find_by_name('Unknown'))
-
+      r = Release.new(:release_type => ReleaseType.find_by_name('Unknown'))
+      if File.directory?(path)
+        r.root_path = path
+      end
+        
       Find.find(path) do |x|
+        puts "movie file: #{x}"
         r.locations << Location.new(:location => x)
       end
       
-      d.releases << r
+      movie.download.releases << r
+      r.download = movie.download
       if !movie.save
         pp movie.errors
-      end
+        pp r.errors
+      end 
     end
     
     def fetch_first_imdb_result_for_filename(filename)

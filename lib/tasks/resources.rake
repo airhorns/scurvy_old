@@ -6,26 +6,39 @@ require "#{RAILS_ROOT}/lib/tasks/music_maker.rb"
 
 namespace :rz do  
   task :add => :environment do 
-    %w{music movies}.each do |type|
+    %w{music movie}.each do |type|
       first = true
-      count = 0
-      path_count = 0
+      i = 0
+      total_count = 0
+      existing_count = 1
       puts "Searching #{App.downloads(type)} for #{type.pluralize}"
+      
       Find.find(App.downloads(type)) do |path|
-        path_count = path_count + 1
+        total_count = total_count + 1
         unless first
-          if Location.find_by_location(path).nil? and count < 10
-            count = count + 1
-            puts "#{type}: #{path}"
-            Object.const_get(type.capitalize+"Maker").scan_path(path)
+          if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil? and i < 3
+            #i = i + 1
+            
+            case type
+              when "music"
+                puts "music found: #{path}"
+                music = MusicMaker.scan_path(path)
+              when "movie"
+                puts "movie dir: #{path}"
+                movie = MovieMaker.add_at_path(path)
+                Find.prune
+                existing_count = existing_count + 1
+              else
+            end
           else
+            existing_count = existing_count + 1
             Find.prune
           end
         else
           first = false
         end
       end
-      puts "Done searching for #{type.pluralize}, #{path_count} paths scanned."
+      puts "Done searching for #{type.pluralize}, #{total_count} paths scanned, #{existing_count} were already known."
     end
   end
   

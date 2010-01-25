@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation
   before_filter :tagline
-  before_filter :fetch_release_types, :only => :edit
+  before_filter :fetch_release_types, :only => [:edit, :update]
   
   private
     def current_user_session

@@ -1,6 +1,7 @@
 class Movie < ActiveRecord::Base
   has_one :download, :as => :resource
   
+  validates_associated :download  
   validates_presence_of :title
   validates_numericality_of :year, :allow_nil => true
   validates_numericality_of :imdbid, :allow_nil => true
@@ -17,6 +18,7 @@ class Movie < ActiveRecord::Base
   
   def self.from_imdb(imdbid)
     # Check to see if this movie is already in the DB. Warning: IMDBID must be known to be valid, lame.
+    imdbid = imdbid.id if imdbid.class == Imdb::Movie
     movie = Movie.find_by_imdbid(imdbid)
     if movie.nil?
       movie = Movie.new_from_imdb(imdbid) 

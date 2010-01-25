@@ -59,8 +59,5 @@ Rails::Initializer.run do |config|
     :user_name => "admin@scurvvy.info",
     :password => "orturren33"
   }
-  begin
-    Scrobbler::Base::api_key = App.apis.lastfm
-  rescue
-  end
 end
+Scrobbler::Base::api_key = App.apis['lastfm']

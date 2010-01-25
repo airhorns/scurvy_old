@@ -9,8 +9,8 @@ class AlbumsController < ApplicationController
   
   def index
     page = params[:page] || 1
-    @albums             = Album.paginate :page => params[:page], :include => [:download], :order => 'albums.created_at DESC', :conditions => ['downloads.approved = ?', true]
-    @unapproved_albums  = Album.find(:all, :limit =>15, :include => [:download], :order => 'albums.created_at DESC', :conditions => ['downloads.approved = ?', false])
+    @albums             = Album.paginate :page => params[:albums_page], :include => [:download], :order => 'albums.created_at DESC', :conditions => ['downloads.approved = ?', true]
+    @unapproved_albums  = Album.paginate :page => params[:unapproved_page], :include => [:download], :order => 'albums.created_at DESC', :conditions => ['downloads.approved = ?', false]
     respond_to do |format|
       format.html # index.html.erb
       format.js {
@@ -73,7 +73,7 @@ class AlbumsController < ApplicationController
   # PUT /albums/1.xml
   def update
     @album = Album.find(params[:id])
-
+    @download = @album.download if @album
     respond_to do |format|
       if @album.update_attributes(params[:album])
         flash[:notice] = 'Album was successfully updated.'

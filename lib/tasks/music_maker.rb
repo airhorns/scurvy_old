@@ -46,6 +46,7 @@ class MusicMaker
         pp track.album.errors
         pp track.artist.errors
       end
+      return track if ! track.new_record?
     end
   end
 end
