@@ -22,7 +22,7 @@
 							:update => "imdbchange", 
 							:url => { :action => "imdb", :id => @movie.id}, 
 							:method => :get, 
-							:before => "$('imdbchange').update(new Element('img', {src: '/images/loader.gif'})); $('imdb').show();",
+							:before => "showIMDB();",
 							:html => {
 								:class => "small"
 								})
