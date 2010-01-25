@@ -46,9 +46,7 @@
 						rescue ActionView::MissingTemplate	
 						end%>
 	                <div class="widget">
-	                    <div class="widget-head">
-	                        <h2>Search scurvy</h2>
-	                    </div>
+	                    <h2>Search scurvy</h2>
 	                    <div class="widget-content">
 	                            <form>
 	                            <input type="text" class="span-2 last" disabled/>
@@ -57,6 +55,11 @@
 	                    </div>
 	                    <!-- .widget end -->
 	                </div>
+					<div class="widget">
+						<h2>Actions</h2>
+						<%= link_to 'invite someone', new_invitation_path %><br/>
+						<%= link_to 'approve new', downloads_path %>
+					</div>
 		        </div>
 				<% [:error, :notice, :success].each do |f| %>
 					<% if flash[f] -%>

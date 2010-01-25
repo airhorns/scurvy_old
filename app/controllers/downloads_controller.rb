@@ -33,6 +33,7 @@ class DownloadsController < ApplicationController
       end
     end
   end
+  
   def approve 
     @download = Download.find(params[:id])
     @download.approved = true
@@ -41,7 +42,7 @@ class DownloadsController < ApplicationController
         format.js { render(:partial => 'xhrsuccess')}
         format.html { 
           flash[:notice] = 'Download was successfully updated.'
-          redirect_to(@download) 
+          redirect_to(downloads_path) 
         }
         format.xml  { head :ok }
       else

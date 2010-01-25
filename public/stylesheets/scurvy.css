@@ -3,6 +3,7 @@ body {
 }
 .container {
 	background-color: #FFF;
+	width:1682px;
 }
 h3 span.subtitle {
 	padding-left: 0px;

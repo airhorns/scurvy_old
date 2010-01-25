@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :movies, :member => { :imdb => :get, :imdbfetch => :post}, :collection => { :autocomplete_for_movie_title => :get}
   map.resources :releases
-  map.resources :downloads, :member => { :approve => :get } 
+  map.resources :downloads, :member => { :approve => :post }, :only => [:index, :edit, :update, :show]
   
   # The priority is based upon order of creation: first created -> highest priority.
 

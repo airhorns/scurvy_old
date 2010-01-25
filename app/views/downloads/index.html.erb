@@ -1,0 +1,17 @@
+<h2>Download List</h2>
+<div class="downloadlist">
+<% @downloads.each do |download| %>
+<div class="download span-20 last" id="download_<%=h download.id%>">
+	<%= peg(download.resource) %>
+	<div class="span-5">
+	<%= render :partial => "downloads/download_info", :locals => {:download => download} %>
+	</div>
+	<div class="span-3 last">
+		<h2>Actions</h2>
+		<%= link_to_remote 'Approve', {:url => approve_download_path(download), :success => "eval(request.responseText); $('#download_"+download.id.to_s+"').slideUp();"}, {:class => "button positive"} %>
+		<%= link_to 'Edit', download.resource, :class => "button negative" %>
+	</div>
+</div>
+<% end %>
+<%= will_paginate @downloads %>
+</div>

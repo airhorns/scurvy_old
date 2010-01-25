@@ -1,0 +1,35 @@
+<div class="span-5 last">
+<h2>Download Info</h2>
+<% remote_form_for(download) do |f| %>
+  <%= f.error_messages %>
+<div class="span-5">
+<table>
+	<tr>
+		<th><%= f.label :id, "DL ID" %></th>
+		<th><%= f.label :active %></th>
+		<th><%= f.label :approved %></th>
+		<th><%= f.label :created_by %></th>
+		<th>&nbsp;</th>
+	</tr>
+	<tr>
+	 	<td>
+			<%=h download.id%>
+	  	</td>
+	  	<td>
+	    	<%= f.check_box :active %>
+		</td>
+		<td>
+			<%= f.check_box :approved %>
+		</td>
+		<td>
+			<%=h download.created_by %>
+		</td>
+		<td>
+			<%= f.submit 'Update' %>
+			<span id="downloadupdateresults_<%=h download.id %>"></span>
+		</td>
+	</tr>
+</table>
+</div>
+<% end %>
+</div>

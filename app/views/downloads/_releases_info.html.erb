@@ -1,0 +1,30 @@
+<div class="span-13 last">
+<h2>Releases</h2>
+<% releases.each do |rls| %>
+	<% form_for(rls) do |f| %>
+		<%= f.error_messages %>
+		<div class="span-2">
+	    	<%= f.label :release_type_id, "Release Type" %><br />
+			<%= f.collection_select(:release_type_id, @release_types, :id, :name) %>
+	  	</div>
+		<div class="span-4">
+	    	<%= f.label :notes %><br />
+			<%= f.text_area :notes, :class => "span-4 inline"%>
+	  	</div>
+		<div class="span-3">
+	    	<%= f.label :locations, "Locations" %><br />
+			<%= rls.locations.map{|loc| truncate(File.basename(loc.location), 35)}[0,3].join("<br/>") if !rls.locations.nil? %>
+	  	</div>
+		<div class="span-2">
+			<%= f.label :created_at %><br />
+			<%=h rls.created_at %>
+	    </div>
+		<div class="span-2 last">
+			<%= f.label :actions %><br />
+			<%= f.submit 'Update' %>
+		</div>
+	<% end %>
+	<br/>
+	<hr/>
+<%end%>
+</div>
