@@ -23,7 +23,7 @@ Rails::Initializer.run do |config|
   config.gem "imdb"
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "rbrainz"
-  config.gem "hornairs-scrobbler", :source => 'http://gemcutter.org'
+  config.gem "hornairs-scrobbler", :lib => 'scrobbler', :source => 'http://gemcutter.org'
   config.gem "ruby-mp3info", :lib => 'mp3info'
   config.gem "simple_autocomplete"
   config.gem "app"
