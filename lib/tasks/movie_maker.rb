@@ -48,7 +48,6 @@ class MovieMaker
       r.download = movie.download
       if !movie.save
         pp movie.errors
-        pp r.errors
       end 
     end
     

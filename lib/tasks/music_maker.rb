@@ -43,8 +43,6 @@ class MusicMaker
       
       if !track.save
         pp track.errors
-        pp track.album.errors
-        pp track.artist.errors
       end
       return track if ! track.new_record?
     end

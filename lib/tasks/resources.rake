@@ -19,7 +19,7 @@ namespace :rz do
      #     i = i + 1
           case type
             when "music"
-              unless File.directory?(path)
+              if ( ! File.directory?(path)) and (File.extname(path) == '.mp3')
                 if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil? and i < 3
                   puts "music found: #{path}"
                   music = MusicMaker.scan_path(path)
