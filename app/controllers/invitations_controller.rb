@@ -14,7 +14,7 @@ class InvitationsController < ApplicationController
     @invitation.sent_at = DateTime.now
     @invitation.sender = current_user
     if @invitation.save
-        @invitation.send_invitation_email(signup_url(@invitation))
+        @invitation.send_invitation_email(signup_url(@invitation.token))
         flash[:notice] = "Thank you, invitation sent."
         redirect_to invitations_url
     else
@@ -28,7 +28,7 @@ class InvitationsController < ApplicationController
   end
   
   def destroy
-    @invite = Invitation.new(params[:id])
+    @invite = Invitation.find(params[:id])
     if @invite.destroy
       flash[:notice] = "Invitation revoked."
     else

@@ -1,0 +1,41 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+		<link rel="stylesheet" href="/stylesheets/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print">	
+		<!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="/stylesheets/scurvy.css" type="text/css">
+		
+		<title>scurvy: release</title>
+	</head>
+	<body>
+		<div class="container push-6 span-8">
+		    <div id="header">
+				<div class="sidebar span-4">
+		            <div class="sitemeta">
+		                <p>scurvy > download</p>
+		            </div>
+		        </div>
+		    </div>
+		    <!-- #header end -->
+			<% [:error, :notice, :success].each do |f| %>
+				<% if flash[f] -%>
+				<div class="push-1 span-6 <%= f%> last">
+					<%= flash[f] %>
+				</div>
+				<% end %>
+			<% end %>
+		    <div id="content" class="span-6 push-1 last">
+		   		<%= yield  %>
+		    </div>
+			<div class="clear"></div>
+		    <!--- #content end -->
+		</div>
+		<!-- #container end -->
+	</body>
+</html>

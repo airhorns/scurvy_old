@@ -27,7 +27,7 @@
 		            </div>
 		        </div>
 				<div id="account">
-						Welcome <%=h current_user.login %> | <%= link_to "Profile", account_path %> | <%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+						Welcome <%=h current_user.name%> | <%= link_to "Profile", account_path %> | <%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
 				</div>
 				<div id="nav">
 					<% semantic_menu do |root|

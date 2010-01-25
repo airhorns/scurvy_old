@@ -1,0 +1,3 @@
+<% @release.locations.each do |loc| %>
+	<%= link_to File.basename(loc.location), download_file_path(loc.id) %>
+<% end%>

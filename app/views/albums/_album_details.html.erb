@@ -1,7 +1,7 @@
 <div class="spethial span-10 last">
 	<h2><%=h boxtitle ||= "Album Details"%></h2>
 	<div class="span-7 last">
-		<h3><%=h album.name %> <span class="subtitle">By <%=h album.artist.name %></span></h3>
+		<h3><%=h album.name %> <span class="subtitle">By <%= link_to album.artist.name, album.artist %></span></h3>
 		<table>
 			<tr>
 				<td>Released:</td>

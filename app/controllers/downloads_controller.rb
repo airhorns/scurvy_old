@@ -82,11 +82,12 @@ class DownloadsController < ApplicationController
   
   def download_release
     @release = Release.find(params[:id])
-    unless (@release.nil? || @release.locations.blank?)
-      cmd = Escape.shell_command(['tar -cfz'] | @release.locations.collect {|loc| loc.location})
-      IO.popen(cmd, 'r') {|pipe|
-        send_data pipe, :filename => "scurvy.tgz"
-      }
-    end
+    # unless (@release.nil? || @release.locations.blank?)
+    #   cmd = Escape.shell_command(['tar -cfz'] | @release.locations.collect {|loc| loc.location})
+    #   IO.popen(cmd, 'r') {|pipe|
+    #     send_data pipe, :filename => "scurvy.tgz"
+    #   }
+    # end
+    render :layout => 'barebones'
   end
 end

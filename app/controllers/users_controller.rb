@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update]
   
   before_filter :require_valid_invitation, :only => [:new, :create] 
+  
   def new 
     @user = User.new(:invitation_token => params[:invitation_token])
     @user.email = @user.invitation.recipient_email if @user.invitation
@@ -40,8 +41,12 @@ class UsersController < ApplicationController
   private
   
   def require_valid_invitation
-    invite = Invite.find_by_token(params[:invitation_token]) if (params[:invitation_token])
-    unless invite and invite.used == false
+    if ! params[:invitation_token].nil?
+      invite = Invitation.find_by_token(params[:invitation_token])
+    elsif ! params[:user].nil? and ! params[:user][:invitation_token].nil?
+      invite = Invitation.find_by_token(params[:user][:invitation_token])
+    end
+    if invite.nil? or invite.used == true
       flash[:error] = "Invalid invitation code."
       redirect_to login_url
     end
