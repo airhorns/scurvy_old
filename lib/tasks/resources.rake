@@ -16,23 +16,29 @@ namespace :rz do
       Find.find(App.downloads(type)) do |path|
         total_count = total_count + 1
         unless first
-          if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil? and i < 3
-            #i = i + 1
-            
-            case type
-              when "music"
-                puts "music found: #{path}"
-                music = MusicMaker.scan_path(path)
-              when "movie"
+     #     i = i + 1
+          case type
+            when "music"
+              unless File.directory?(path)
+                if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil? and i < 3
+                  puts "music found: #{path}"
+                  music = MusicMaker.scan_path(path)
+                else
+                  existing_count = existing_count + 1
+                  Find.prune
+                end
+              end
+            when "movie"
+              if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil? and i < 3
                 puts "movie dir: #{path}"
                 movie = MovieMaker.add_at_path(path)
                 Find.prune
                 existing_count = existing_count + 1
               else
-            end
-          else
-            existing_count = existing_count + 1
-            Find.prune
+                existing_count = existing_count + 1
+                Find.prune
+              end
+            else
           end
         else
           first = false
