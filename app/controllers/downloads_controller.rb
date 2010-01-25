@@ -1,4 +1,5 @@
 class DownloadsController < ApplicationController
+  include Escape
   def index
     @downloads = Download.find :all
 
@@ -71,6 +72,21 @@ class DownloadsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(admin_downloads_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def download_file
+    @location = Location.find(params[:id])
+    send_file @location.location unless @location.nil?
+  end
+  
+  def download_release
+    @release = Release.find(params[:id])
+    unless (@release.nil? || @release.locations.blank?)
+      cmd = Escape.shell_command(['tar -cfz'] | @release.locations.collect {|loc| loc.location})
+      IO.popen(cmd, 'r') {|pipe|
+        send_data pipe, :filename => "scurvy.tgz"
+      }
     end
   end
 end

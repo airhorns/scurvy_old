@@ -5,7 +5,8 @@ development: &development
   downloads:
       movies: /Users/hornairs/Code/scurvy-test/movies
       music: /Users/hornairs/Code/scurvy-test/music
-      
+  apis:
+      lastfm: "cc85b6d4313e40450230872430b4d631"
 test:
   <<: *development
 
@@ -14,3 +15,5 @@ production:
   downloads:
       movies: /var/downloads/movies
       music: /var/downloads/music
+  apis:
+      lastfm: "cc85b6d4313e40450230872430b4d631"

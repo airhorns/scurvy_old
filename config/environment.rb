@@ -23,11 +23,11 @@ Rails::Initializer.run do |config|
   config.gem "imdb"
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "rbrainz"
-  config.gem "scrobbler"
+  config.gem "hornairs-scrobbler", :source => 'http://gemcutter.org'
   config.gem "ruby-mp3info", :lib => 'mp3info'
   config.gem "simple_autocomplete"
   config.gem "app"
-  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx',:version => '1.3.11'
+  config.gem "escape"
   
   config.action_controller.relative_url_root = ""
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -59,8 +59,8 @@ Rails::Initializer.run do |config|
     :user_name => "admin@scurvvy.info",
     :password => "orturren33"
   }
-  
+  begin
+    Scrobbler::Base::api_key = App.apis.lastfm
+  rescue
+  end
 end
-
-Scrobbler::Base::api_key = "cc85b6d4313e40450230872430b4d631"
-

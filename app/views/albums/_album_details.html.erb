@@ -39,7 +39,7 @@
 			<tr>
 				<td><%=h f.release_type.name %></td>
 				<td><%=h f.locations.count %></td>
-				<td class="filelink"><%= link_to(" ", f, :class => "ss_sprite ss_arrow_down") %>
+				<td class="filelink"><%= link_to("", download_release_path(f), :class => "ss_sprite ss_arrow_down") %></td>
 			</tr>
 			<% end %>
 		</table>

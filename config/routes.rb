@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.download_file    '/location/:id', :controller => "downloads", :action => "download_file"
+  map.download_release '/release/:id', :controller => "downloads", :action => "download_release"
+  
   map.resources :invitations, :member => { :resend => :get }
   map.resources :tracks, :collection => { :autocomplete_for_track_name => :get}
   map.resources :artists, :collection => { :autocomplete_for_artist_name => :get}
