@@ -35,15 +35,7 @@
 								}) 
 		%>
 		<%= link_to '', edit_movie_path(movie), :class => "ss_sprite ss_film_edit" %>
-		<%= link_to_remote( "", 
-							:update => "mainmovie", 
-							:url => { :action => "show", :id => movie.id}, 
-							:complete => "$$('.filelink').each(function(link){console.log(link); new Effect.Highlight(link)});",
-							:method => :get, 
-							:html => {
-								:class => "ss_sprite ss_arrow_down"
-								}) 
-		%>
+		<%= link_to_download movie, 'mainmovie' %>
 	</td>
   </tr>
 <% end %>

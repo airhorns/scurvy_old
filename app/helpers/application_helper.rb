@@ -45,4 +45,22 @@ module ApplicationHelper
     p = s.pluralize
     render :partial => "#{p}/#{s}_peg", :locals => { s.intern => model}
   end
+  
+  def link_to_download(resource, update = '')
+    case resource.download.releases.length
+    when 0
+      return ""
+    when 1
+		  return link_to '', download_release_path(resource.download.releases.first), :class => "ss_sprite ss_arrow_down"
+		else
+		  return link_to_remote( "", 
+							:update => update, 
+							:url => { :action => "show", :id => resource.id}, 
+							:success => "$('.filelink').effect('highlight', {}, 2000)});",
+							:method => :get, 
+							:html => {
+								:class => "ss_sprite ss_arrow_down"
+							}) 
+		end
+	end
 end

@@ -48,8 +48,15 @@ namespace :rz do
     end
   end
   
+  task :clean => :environment do
+    # clean out locations leading to directories
+    locations = Location.find_each do |loc|
+      loc.destroy if (File.directory?(loc.location) or File.basename(loc.location) == '.DS_Store')
+    end
+  end
+  
   task :addmovie => :environment do
-    MovieMaker.scan_path(ENV['movie'])
+    MovieMaker.add_at_path(ENV['movie'])
   end
   
   task :addmusic => :environment do

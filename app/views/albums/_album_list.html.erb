@@ -27,15 +27,7 @@
 								}) 
 		%>
 		<%= link_to '', edit_album_path(album), :class => "ss_sprite ss_cd_edit" %>
-		<%= link_to_remote( "", 
-							:update => "mainalbum", 
-							:url => { :action => "show", :id => album.id}, 
-							:complete => "$$('.filelink').each(function(link){console.log(link); new Effect.Highlight(link)});",
-							:method => :get, 
-							:html => {
-								:class => "ss_sprite ss_arrow_down"
-								}) 
-		%>
+		<%= link_to_download album, 'mainalbum' %>
 	</td>
   </tr>
 <% end %>
