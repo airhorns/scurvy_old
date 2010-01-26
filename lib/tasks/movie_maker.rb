@@ -40,8 +40,10 @@ class MovieMaker
       end
         
       Find.find(path) do |x|
-        puts "movie file: #{x}"
-        r.locations << Location.new(:location => x)
+        unless File.directory?(x) 
+          puts "movie file: #{x}"
+          r.locations << Location.new(:location => x)
+        end
       end
       
       movie.download.releases << r
