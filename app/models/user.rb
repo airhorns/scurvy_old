@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   private
 
   def set_invitation_limit
-    self.invitation_limit = 2 if self.invitation_limit.nil?
+    self.invitation_limit = 0 if self.invitation_limit.nil?
   end
   
   def use_invitation

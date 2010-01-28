@@ -9,14 +9,13 @@ namespace :rz do
     %w{music movie}.each do |type|
       first = true
       i = 0
-      total_count = 0
+      total_count = 1
       existing_count = 1
       puts "Searching #{App.downloads(type)} for #{type.pluralize}"
       
       Find.find(App.downloads(type)) do |path|
-        total_count = total_count + 1
         unless first
-     #     i = i + 1
+          total_count = total_count + 1
           case type
             when "music"
               if ( ! File.directory?(path)) and (File.extname(path) == '.mp3')
