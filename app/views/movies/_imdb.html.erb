@@ -1,0 +1,18 @@
+<div id="imdbresults"></div>
+<% remote_form_for(:movie, @movie, 
+:url => imdbfetch_movie_url(@movie), 
+:before => "showIMDBResults();",
+:html => {:method => :post }) do |f| %>
+  <%= f.error_messages %>
+	<p>
+		<%= f.label :imdbid, "New IMDB ID To Investigate" %><br/>
+		<%= f.text_field :imdbid %>
+	</p>
+	<p>
+		<%= label :movie, :autoupdate, "Auto update movie data?", :class => "disabled" %>
+		<%= check_box_tag 'movie_autoupdate', 1, false, :disabled => true %>
+	</p>
+	<p>
+		<%= f.submit 'Fetch New Info' %>
+	</p>
+<% end %>
