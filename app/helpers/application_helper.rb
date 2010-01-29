@@ -29,15 +29,16 @@ module ApplicationHelper
   end
   
   def autocomplete_for_model(model, field='name')
-    path = case model
+    case model
     when 'track'
+      path = "autocomplete_for_track_name_tracks_path"
     else
-      "autocomplete_for_"+model+"_"+field+"_"+model.pluralize+"_path"
+      path = "autocomplete_for_"+model+"_"+field+"_"+model.pluralize+"_path"
     end
     text_field_tag "auto_"+model+"_"+field, model.capitalize + ' Quick Search', {
       :class => 'autocomplete quicksearch span-3', 
       'basepath' => model.pluralize, 
-      'autocomplete_url' => send()
+      'autocomplete_url' => send(path)
     }
   end
   
