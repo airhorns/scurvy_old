@@ -41,5 +41,5 @@
 <% end %>
 </table>
 <% page_param ||= 'movie_page' %>
-<%= will_paginate movie_list if movie_list.respond_to?('total_pages') %>
+<%= will_paginate movie_list, :param_name => page_param if movie_list.respond_to?('total_pages') %>
 </div>

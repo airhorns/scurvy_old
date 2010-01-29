@@ -1,4 +1,5 @@
 class Movie < ActiveRecord::Base
+  acts_as_taggable
   has_one :download, :as => :resource
   
   validates_associated :download  

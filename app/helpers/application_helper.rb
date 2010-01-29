@@ -1,5 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  include TagsHelper
   def length_of_time_in_words(seconds, short = true)
     if seconds 
       shortforms = %w[ yr mnth wk day hr min sec ]
@@ -28,10 +29,15 @@ module ApplicationHelper
   end
   
   def autocomplete_for_model(model, field='name')
+    path = case model
+    when 'track'
+    else
+      "autocomplete_for_"+model+"_"+field+"_"+model.pluralize+"_path"
+    end
     text_field_tag "auto_"+model+"_"+field, model.capitalize + ' Quick Search', {
       :class => 'autocomplete quicksearch span-3', 
       'basepath' => model.pluralize, 
-      'autocomplete_url' => send( "autocomplete_for_"+model+"_"+field+"_"+model.pluralize+"_path")
+      'autocomplete_url' => send()
     }
   end
   

@@ -49,8 +49,16 @@ namespace :rz do
   
   task :clean => :environment do
     # clean out locations leading to directories
-    locations = Location.find_each do |loc|
+    Location.find_each do |loc|
       loc.destroy if (File.directory?(loc.location) or File.basename(loc.location) == '.DS_Store')
+    end
+  end
+  
+  task :update => :environmen do 
+    Movie.find_each do |movie|
+    end
+    Album.find_each do |movie|
+      
     end
   end
   
@@ -66,22 +74,5 @@ namespace :rz do
     Track.delete(:all)
     Album.delete(:all)
     Artist.delete(:all)
-  end
-  
-  task :adddirectory => :environment do
-    #only goes down one level,
-    first = true
-    count = 0
-    Find.find(ENV['path']) do |x|
-      count = count + 1
-      if first or count > 10
-        first = false
-      else
-        MovieMaker.scan_path(x)
-        if File.directory?(x)
-          Find.prune
-        end
-      end
-    end
   end
 end

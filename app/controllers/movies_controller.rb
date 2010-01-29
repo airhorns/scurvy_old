@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.xml
-  before_filter :latest_movies, :require_user
+  before_filter :latest_movies, :tag_cloud, :require_user
   
   autocomplete_for :movie, :title do |movies|
     movies.map{|movie| "#{movie.title} (#{movie.year}) --- #{movie.id}"}.join("\n")
@@ -129,5 +129,7 @@ class MoviesController < ApplicationController
   def latest_movies
     @latest_movies = Movie.find(:all, :include => [:download], :limit => 5, :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', true])
   end
-  
+  def tag_cloud
+    @tags = Movie.tag_counts
+  end
 end
