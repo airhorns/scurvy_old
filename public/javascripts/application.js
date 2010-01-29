@@ -73,7 +73,14 @@ jQuery(function($){//on document ready
 function showIMDB() {
 	imdb = $('#imdb');
 	if (imdb) {
-		$("#imdbchange").html('<img src="loader.gif">');
+		$("#imdbchange").html('<img src="/images/loader.gif">');
+		imdb.show();
+	}
+}
+function showIMDBResults() {
+	imdb = $('#imdbresults');
+	if (imdb) {
+		$("#imdbresults").html('<img src="/images/loader.gif">');
 		imdb.show();
 	}
 }
