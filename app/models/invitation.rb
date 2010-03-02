@@ -11,7 +11,7 @@ class Invitation < ActiveRecord::Base
   before_create :decrement_sender_count
 
   def send_invitation_email(url)
-    Mailer.deliver_invitation(self, url)
+    Mailer.invitation(self, url).deliver
     self.update_attribute(:sent_at, DateTime.now)
   end
   

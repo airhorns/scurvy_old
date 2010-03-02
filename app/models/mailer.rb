@@ -1,8 +1,8 @@
 class Mailer < ActionMailer::Base
+  default :from => 'admin@scurvvy.info'
+  
   def invitation(invitation, signup_url)
-    subject    'scurvy invite'
-    recipients invitation.recipient_email
-    from       'admin@scurvy.com'
-    body       :invitation => invitation, :signup_url => signup_url
+    @signup_url = signup_url
+    mail :to => invitation.recipient_email, :subject => "scurvy invite"
   end
 end

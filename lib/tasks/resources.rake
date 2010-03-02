@@ -1,8 +1,8 @@
 require 'find'
 require 'open-uri'
 require 'digest'
-require "#{RAILS_ROOT}/lib/tasks/movie_maker.rb"
-require "#{RAILS_ROOT}/lib/tasks/music_maker.rb"
+require "#{Rails.root}/lib/tasks/movie_maker.rb"
+require "#{Rails.root}/lib/tasks/music_maker.rb"
 
 namespace :rz do  
   task :add => :environment do 

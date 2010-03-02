@@ -1,72 +1,54 @@
-ActionController::Routing::Routes.draw do |map|
+Scurvy::Application.routes.draw do
+  match '/location/:id' => 'downloads#download_file', :as => :download_file
+  match '/release/:id' => 'downloads#download_release', :as => :download_release
   
-  map.download_file    '/location/:id', :controller => "downloads", :action => "download_file"
-  map.download_release '/release/:id', :controller => "downloads", :action => "download_release"
-  
-  map.resources :invitations, :member => { :resend => :get }
-  map.resources :artists, :collection => { :autocomplete_for_artist_name => :get}
-  map.resources :albums, :collection => { :autocomplete_for_album_name => :get} do |album|
-    album.resources :tracks
+  resources :invitations do
+    member do
+      get :resend
+    end
   end
-  map.resources :tracks, :collection => { :autocomplete_for_track_name => :get}
-    
 
-  map.resources :movies, :member => { :imdb => :get, :imdbfetch => :post}, :collection => { :autocomplete_for_movie_title => :get}
-  map.resources :releases
-  map.resources :downloads, :member => { :approve => :post }, :only => [:index, :edit, :update, :show]
+  resources :artists do
+    collection do
+      get :autocomplete_for_artist_name
+    end
+  end
+
+  resources :albums do
+      resources :tracks
+  end
+
+  resources :tracks do
+    collection do
+      get :autocomplete_for_track_name
+    end
+  end
+
+  resources :movies do
+    collection do
+        get :autocomplete_for_movie_title
+    end
+    member do
+      post :imdbfetch
+      get :imdb
+    end
+  end
+
+  resources :releases
   
-  # The priority is based upon order of creation: first created -> highest priority.
+  resources :downloads do
+    member do
+      post :approve
+    end
+  end
 
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-
-  # See how all your routes lay out with "rake routes"
-  map.login '/login', :controller => "user_sessions", :action => "new", :conditions => { :method => :get }
-  map.connect '/login', :controller => "user_sessions", :action => "create", :conditions => { :method => :post }
-  
-  map.logout '/logout', :controller => "user_sessions", :action => "destroy"
-  
-  
-  map.signup  '/signup/:invitation_token', :controller => "users", :action => "new", :conditions => { :method => :get }
-  map.signup  '/signup/:invitation_token', :controller => "users", :action => "create", :conditions => { :method => :post }
-  
-  map.root :controller => "user_sessions", :action => "new" # optional, this just sets the root route
-  
-  map.resource :account, :controller => "users"
-  map.resources :users
-  
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  match '/login' => 'user_sessions#new', :as => :login, :via => 'get'
+  match '/login' => 'user_sessions#create', :via => 'post'
+  match '/logout' => 'user_sessions#destroy', :as => :logout
+  match '/signup/:invitation_token' => 'users#new', :as => :signup, :via => 'get'
+  match '/signup/:invitation_token' => 'users#create', :as => :signup, :via => 'post'
+  match '/' => 'user_sessions#new'
+  resource :account
+  resources :users
+  match '/:controller(/:action(/:id))'
 end
