@@ -18,15 +18,13 @@
   </p>
   <p>
 	<%= f.label :imdbid, "IMDB ID" %> 
-	<%= link_to_remote( "change", 
+	<%= link_to "change", {:action => "imdb", :id => @movie.id},
+							:remote => true,
 							:update => "imdbchange", 
-							:url => { :action => "imdb", :id => @movie.id}, 
 							:method => :get, 
-							:before => "showIMDB();",
-							:html => {
-								:class => "small"
-								})
-		%>
+							:id => "imdbedit",
+							:class => "small"
+	%>
 <br />
 	<%= f.text_field :imdbid, :class => "span-3", :disabled => true %>
 

@@ -16,6 +16,9 @@ Scurvy::Application.routes.draw do
 
   resources :albums do
       resources :tracks
+      collection do
+        get :autocomplete_for_album_name
+      end
   end
 
   resources :tracks do
@@ -48,7 +51,7 @@ Scurvy::Application.routes.draw do
   match '/signup/:invitation_token' => 'users#new', :as => :signup, :via => 'get'
   match '/signup/:invitation_token' => 'users#create', :as => :signup, :via => 'post'
   match '/' => 'user_sessions#new'
-  resource :account
+  resource :account, :controller => "users"
   resources :users
   match '/:controller(/:action(/:id))'
 end

@@ -1,5 +1,0 @@
-page_id = 'downloadupdateresults_' + @download.id.to_s
-page.replace page_id, '<span id="' + page_id + '" class="ss_sprite ss_accept"> </span>'
-page.delay(3) do
-  page.visual_effect :fade, page_id
-end

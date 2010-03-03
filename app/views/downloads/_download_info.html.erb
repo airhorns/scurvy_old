@@ -1,6 +1,6 @@
 <div class="span-5 last">
 <h2>Download Info</h2>
-<% remote_form_for(download) do |f| %>
+<% form_for(download, :remote => true, :html => { :method => :put ,:update => "downloadupdateresults_#{download.id}"} ) do |f| %>
   <%= f.error_messages %>
 <div class="span-5">
 <table>

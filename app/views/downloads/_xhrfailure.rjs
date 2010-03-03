@@ -1,2 +1,0 @@
-page_id = 'downloadupdateresults_' + @download.id.to_s
-page.replace page_id, '<span id="' + page_id + '" class="ss_sprite ss_exclamation">Error!</span>'

@@ -60,14 +60,12 @@ module ApplicationHelper
     when 1
 		  return link_to '', download_release_path(resource.download.releases.first), :class => "ss_sprite ss_arrow_down"
 		else
-		  return link_to_remote( "", 
+		  return link_to "", {:action => "show", :id => resource.id},  
 							:update => update, 
-							:url => { :action => "show", :id => resource.id}, 
+							:remote => true, 
 							:success => "$('.filelink').effect('highlight', {}, 2000)});",
 							:method => :get, 
-							:html => {
-								:class => "ss_sprite ss_arrow_down"
-							}) 
+							:class => "ss_sprite ss_arrow_down"
 		end
 	end
 end

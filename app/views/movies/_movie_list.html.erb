@@ -10,7 +10,6 @@
     <th>Length</th>
 	<th>Actions</th>
   </tr>
-
 <% movie_list.each do |movie| %>
   <tr class="<%= cycle("", "altrow")%>">
 	<td>
@@ -26,13 +25,11 @@
 	<td><%=h movie.year %></td>    
     <td><%= movie.length ? length_of_time_in_words(movie.length.minutes) : " -- " %></td>
 	<td class="actions">
-		<%= link_to_remote( "", 
+		<%= link_to "", {:action => "show", :id => movie.id}, 
 							:update => "mainmovie", 
-							:url => { :action => "show", :id => movie.id}, 
-							:method => :get, 
-							:html => {
-								:class => "ss_sprite ss_film_go"
-								}) 
+							:method => :get,
+							:remote => true, 
+							:class => "ss_sprite ss_film_go" 
 		%>
 		<%= link_to '', edit_movie_path(movie), :class => "ss_sprite ss_film_edit" %>
 		<%= link_to_download movie, 'mainmovie' %>

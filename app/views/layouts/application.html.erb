@@ -15,15 +15,18 @@
 			<%= controller.controller_name %>: <%= controller.action_name %>
 		</title>
 		
-		<%= javascript_include_tag :defaults %>
-		<%= javascript_include_tag "jquery.autocomplete" %>
+		<%= javascript_include_tag 'jquery' %>
+		<%= javascript_include_tag 'jquery-ui' %>
+		<%= javascript_include_tag 'rails' %>
+		<%= javascript_include_tag 'jquery.autocomplete' %>
+		<%= javascript_include_tag 'application' %>
 	</head>
 	<body>
 		<div class="container">
 		    <div id="header">
 		        <div class="sidebar span-4">
 		            <div class="sitemeta">
-		                <p><%=['scurvy', link_to(controller.controller_name, :controller => controller.controller_name, :action =>'index'), link_to(controller.action_name, :controller => controller.controller_name, :action =>controller.action_name)].join(' > ')  %></p>
+		                <p><%=raw ['scurvy', link_to(controller.controller_name, :controller => controller.controller_name, :action =>'index'), link_to(controller.action_name, :controller => controller.controller_name, :action =>controller.action_name)].join(' > ')  %></p>
 		            </div>
 		        </div>
 				<div id="account">
@@ -59,7 +62,8 @@
 					<div class="widget">
 						<h2>Actions</h2>
 						<%= link_to 'invite someone', new_invitation_path %><br/>
-						<%= link_to 'approve new', downloads_path %>
+						<%= link_to 'approve new autos', downloads_path %><br/>
+						<%= link_to 'interactive importer', downloads_path %>
 					</div>
 		        </div>
 				<% [:error, :notice, :success].each do |f| %>

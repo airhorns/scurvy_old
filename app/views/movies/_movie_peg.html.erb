@@ -6,11 +6,11 @@
 	<div class="span-9">
 		<p class="synopsis"><%=h movie.synopsis %></p>
 		<ul>
-			<%=	"<li><strong>Year</strong>: #{movie.year}</li>" if movie.year %>
-			<%=	"<li><strong>Directed by</strong>: #{movie.director}</li>" if movie.director%>
-			<%= "<li><strong>IMDB Rating</strong>: #{movie.imdbrating} #{link_to "Visit IMDB page", 'http://www.imdb.com/title/tt' + movie.imdbid}</li>" if movie.imdbid %>
-			<%=	"<li><strong>Length</strong>: #{length_of_time_in_words(movie.length.minutes)}</li>" if movie.length%>
-			<%=	"<li><strong>Language</strong>: #{movie.language}</li>" if movie.language%>
+			<li><%=	"Year: #{movie.year}" if movie.year %></li>
+			<li><%=	"Directed by: #{movie.director}" if movie.director%></li>
+			<li><%= "IMDB Rating: #{movie.imdbrating} "%> <%= link_to "Visit IMDB page", 'http://www.imdb.com/title/tt' + movie.imdbid if movie.imdbid %></li>
+			<li><%=	"Length: #{length_of_time_in_words(movie.length.minutes)}" if movie.length%></li>
+			<li><%=	"Language: #{movie.language}" if movie.language %></li>
 		</ul>
 	</div>
 </div>

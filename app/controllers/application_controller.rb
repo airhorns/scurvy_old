@@ -4,7 +4,6 @@
 class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user
-  filter_parameter_logging :password, :password_confirmation
   before_filter :check_for_maintenance
   before_filter :tagline
   before_filter :fetch_release_types, :only => [:edit, :update]
@@ -12,7 +11,6 @@ class ApplicationController < ActionController::Base
   
   private
     def check_for_maintenance
-      puts App
         if File.exist? "#{Rails.root}/public/maintenance.html"
           return render(:file => "#{Rails.root}/public/maintenance.html") unless App['active']
        end

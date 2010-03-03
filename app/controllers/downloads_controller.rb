@@ -3,7 +3,6 @@ class DownloadsController < ApplicationController
   
   def index
     @downloads = Download.paginate :page => params[:page], :include => [ :resource ], :order => 'downloads.created_at DESC', :conditions => ['downloads.approved = ?', false]
-    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @downloads }
@@ -17,10 +16,9 @@ class DownloadsController < ApplicationController
   
   def update
     @download = Download.find(params[:id])
-
     respond_to do |format|
       if @download.update_attributes(params[:download])
-        format.js { render(:partial => 'xhrsuccess')}
+        format.js { render(:partial => 'misc/xhrsuccess')}
         format.html { 
           flash[:notice] = 'Download was successfully updated.'
           redirect_to(@download) 
@@ -29,7 +27,7 @@ class DownloadsController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @download.errors, :status => :unprocessable_entity }
-        format.js { render(:partial => 'xhrfailure')}        
+        format.js { render(:partial => 'misc/xhrfailure')}        
       end
     end
   end
@@ -39,7 +37,7 @@ class DownloadsController < ApplicationController
     @download.approved = true
     respond_to do |format|
       if @download.save
-        format.js { render(:partial => 'xhrsuccess')}
+        format.js { render(:partial => 'misc/xhrsuccess')}
         format.html { 
           flash[:notice] = 'Download was successfully updated.'
           redirect_to(downloads_path) 
@@ -48,7 +46,7 @@ class DownloadsController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @download.errors, :status => :unprocessable_entity }
-        format.js { render(:partial => 'xhrfailure')}        
+        format.js { render(:partial => 'misc/xhrfailure')}        
       end
     end
   end 
@@ -110,5 +108,4 @@ class DownloadsController < ApplicationController
   #       format.xml  { head :ok }
   #     end
   #   end
-  #
 end

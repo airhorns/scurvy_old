@@ -11,9 +11,9 @@ namespace :rz do
       i = 0
       total_count = 1
       existing_count = 1
-      puts "Searching #{App.downloads(type)} for #{type.pluralize}"
+      puts "Searching #{App.downloads[type.intern]} for #{type.pluralize}"
       
-      Find.find(App.downloads(type)) do |path|
+      Find.find(App.downloads[type.intern]) do |path|
         unless first
           total_count = total_count + 1
           case type

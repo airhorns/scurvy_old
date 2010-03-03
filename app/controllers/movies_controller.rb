@@ -1,8 +1,7 @@
 class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.xml
-  before_filter :latest_movies, :tag_cloud, :require_user
-  
+  before_filter :latest_movies, :require_user #, :tag_cloud
   autocomplete_for :movie, :title do |movies|
     movies.map{|movie| "#{movie.title} (#{movie.year}) --- #{movie.id}"}.join("\n")
   end
@@ -11,7 +10,6 @@ class MoviesController < ApplicationController
     page = params[:page] || 1
     @movies             = Movie.paginate :page => params[:movie_page], :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', true]
     @unapproved_movies  = Movie.paginate :page => params[:unapproved_page], :include => [ :download ], :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', false]
-    
     respond_to do |format|
       format.html # index.html.erb
       format.js {
@@ -56,7 +54,6 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     respond_to do |format| 
       format.js { render(:partial => 'imdb')}
-      format.xml  { render :xml => @movie }
     end
   end
   
@@ -113,15 +110,8 @@ class MoviesController < ApplicationController
     @imdb_movie = Imdb::Movie.new(params[:movie][:imdbid])
     @autoupdate = params[:autoupdate] ||= false
     
-    render :update do |page|
-      if !@imdb_movie.nil?
-        if @autoupdate
-          #haven't done this yet
-        end
-        page.replace_html 'imdbresults', :partial => 'imdb_movie'
-      else
-        page.replace_html 'imdbresults', "No IMDB film found."
-      end
+    respond_to do |format|
+      format.js { render(:partial => 'imdb_movie')}
     end
   end
   
@@ -129,6 +119,7 @@ class MoviesController < ApplicationController
   def latest_movies
     @latest_movies = Movie.find(:all, :include => [:download], :limit => 5, :order => 'movies.created_at DESC', :conditions => ['downloads.approved = ?', true])
   end
+  
   def tag_cloud
     @tags = Movie.tag_counts
   end

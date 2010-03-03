@@ -43,6 +43,7 @@ class MusicMaker
       
       if !track.save
         pp track.errors
+        Floater.new(:location => path, :guess => 'track').create!
       end
       return track if ! track.new_record?
     end
