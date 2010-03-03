@@ -28,7 +28,7 @@ class Track < ActiveRecord::Base
     def from_scrobbler(track, artist = nil, album = nil) 
       raise ArgumentError, "Track must be of type Scrobbler::Track" if track.class != Scrobbler::Track
       
-      r_track = Track.find_by_lastfm_id(track.id)
+      r_track = Track.find_by_lastfm_id(track.id) if !track.id.nil?
       if r_track.nil?
         r_track = Track.new_from_scrobbler(track, artist, album)
       end
@@ -36,12 +36,14 @@ class Track < ActiveRecord::Base
     end
     
     def new_from_id3tag(tag)
-      track = Scrobbler::Track.new(tag.artist, :name => tag.title , :include_info => true)
+      track = Scrobbler::Track.new(tag.artist, :name => tag.title, :include_info => true)
       album = Album.from_id3tag(tag)
       Track.from_scrobbler(track, album.artist, album)
     end
+    
     def from_id3tag(tag)
-      track = Track.find(:first, :include => [:artist, :album], :conditions => {:tracks => {:name => tag.title }, :artists => {:name => tag.artist}, :albums => {:name => tag.album}})
+      #track = Track.find(:first, :include => [:artist, :album], :conditions => {:tracks => {:name => tag.title }, :artists => {:name => tag.artist}, :albums => {:name => tag.album}})
+      track = Track.joins(:artist, :album).where('tracks.name' => tag.title, 'artists.name' => tag.artist, 'albums.name' => tag.album).first
       if track.nil?
         track = Track.new_from_id3tag(tag)
       end

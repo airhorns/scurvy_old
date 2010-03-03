@@ -1,7 +1,7 @@
 class MovieMaker
   class << self
     def add_at_path(path)
-      
+      begin
       if File.directory?(path) 
         imdb = search_nfos(path)
         if imdb
@@ -48,9 +48,14 @@ class MovieMaker
       
       movie.download.releases << r
       r.download = movie.download
-      if !movie.save
-        pp movie.errors
-      end 
+      
+      movie.save! 
+      
+      rescue Exception => e
+        puts "Error with path: "+e.message
+        Floater.create!(:location => path, :guess => 'movie', :release_id => '0')
+      end
+      
     end
     
     def fetch_first_imdb_result_for_filename(filename)

@@ -6,20 +6,20 @@ require "#{Rails.root}/lib/tasks/music_maker.rb"
 
 namespace :rz do  
   task :add => :environment do 
-    %w{music movie}.each do |type|
+    %w{movie}.each do |type|
       first = true
-      i = 0
       total_count = 1
       existing_count = 1
       puts "Searching #{App.downloads[type.intern]} for #{type.pluralize}"
       
       Find.find(App.downloads[type.intern]) do |path|
-        unless first
+        Find.prune if path.include?('.DS_Store')
+        unless first #|| total_count > 2
           total_count = total_count + 1
           case type
             when "music"
               if ( ! File.directory?(path)) and (File.extname(path) == '.mp3')
-                if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil? and i < 3
+                if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil?
                   puts "music found: #{path}"
                   music = MusicMaker.scan_path(path)
                 else
@@ -28,7 +28,7 @@ namespace :rz do
                 end
               end
             when "movie"
-              if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil? and i < 3
+              if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil?
                 puts "movie dir: #{path}"
                 movie = MovieMaker.add_at_path(path)
                 Find.prune
