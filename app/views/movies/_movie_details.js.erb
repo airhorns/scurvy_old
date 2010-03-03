@@ -1,0 +1,19 @@
+<div class="spethial">
+	<h2><%=h boxtitle ||= "Movie Details"%></h2>
+	<div class="span-5 last">
+		<h3><%=h movie.title %></h3>
+		<p class="synopsis"><%=h movie.synopsis %></p>
+		<ul>
+			<li><%=	"Year: #{movie.year}" if movie.year %></li>
+			<li><%=	"Directed by: #{movie.director}" if movie.director%></li>
+			<li><%= "IMDB Rating: #{movie.imdbrating} "%> <%= link_to "Visit IMDB page", 'http://www.imdb.com/title/tt' + movie.imdbid if movie.imdbid %></li>
+			<li><%=	"Length: #{length_of_time_in_words(movie.length.minutes)}" if movie.length%></li>
+			<li><%=	"Language: #{movie.language}" if movie.language %></li>
+		</ul>
+		<%= render :partial => 'releases/releases_list', :locals => {:releases => movie.download.releases} %>
+	</div>
+	<div class="span-5">
+	<%= image_tag(movie.posterurl, :class => "span-5", :alt => "movie poster") if movie.posterurl %>
+	</div>
+	<!-- <div class="clear"></div> -->
+</div>

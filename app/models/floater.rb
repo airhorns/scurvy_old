@@ -1,0 +1,2 @@
+class Floater < Location
+end

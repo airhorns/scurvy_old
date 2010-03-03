@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location: MyString
+  batch_number: 1
+  guess: MyString
+
+two:
+  location: MyString
+  batch_number: 1
+  guess: MyString
