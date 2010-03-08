@@ -3,47 +3,23 @@ require 'open-uri'
 require 'digest'
 require "#{Rails.root}/lib/tasks/movie_maker.rb"
 require "#{Rails.root}/lib/tasks/music_maker.rb"
+require "#{Rails.root}/lib/tasks/resource_manager.rb"
 
 namespace :rz do  
-  task :add => :environment do 
-    %w{movie}.each do |type|
-      first = true
-      total_count = 1
-      existing_count = 1
-      puts "Searching #{App.downloads[type.intern]} for #{type.pluralize}"
+  
+  task :add, :type, :path, :needs => :environment do |t, args|
+    if args[:type].blank?
+      App.resource_types.each {|t| ResourceManager::add_type(t)}
+    else
+      raise ArgumentError, "Must supply a recognized type, options are "+App.resource_types.join(',') if App.resource_types.include?(args[:type])
+      raise ArgumentError, "Must supply a path to scan when supplying a type" if args[:path].blank?
       
-      Find.find(App.downloads[type.intern]) do |path|
-        Find.prune if path.include?('.DS_Store')
-        unless first #|| total_count > 2
-          total_count = total_count + 1
-          case type
-            when "music"
-              if ( ! File.directory?(path)) and (File.extname(path) == '.mp3')
-                if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil?
-                  puts "music found: #{path}"
-                  music = MusicMaker.scan_path(path)
-                else
-                  existing_count = existing_count + 1
-                  Find.prune
-                end
-              end
-            when "movie"
-              if Location.find_by_location(path).nil? and Release.find_by_root_path(path).nil?
-                puts "movie dir: #{path}"
-                movie = MovieMaker.add_at_path(path)
-                Find.prune
-                existing_count = existing_count + 1
-              else
-                existing_count = existing_count + 1
-                Find.prune
-              end
-            else
-          end
-        else
-          first = false
-        end
+      case args[:type]
+      when "movie"
+        MovieMaker.add_release_at_path(args[:path])
+      when "music"
+        MusicMaker.scan_path(args[:path])
       end
-      puts "Done searching for #{type.pluralize}, #{total_count} paths scanned, #{existing_count} were already known."
     end
   end
   
@@ -54,25 +30,20 @@ namespace :rz do
     end
   end
   
-  task :update => :environmen do 
-    Movie.find_each do |movie|
+  task :update, :type, :needs => :environment do |t, args| 
+    if args[:type].blank?
+      App.resource_types.each {|t| ResourceManager::update_type(t)}
+    else
+      ResourceManager::update_type(args[:type])
     end
-    Album.find_each do |movie|
-      
+  end
+  
+  task :clear, :type, :needs => :environment do |t, args|
+    if args[:type].blank?
+      App.resource_types.each {|t| ResourceManager::clear_type(t)}
+    else
+      ResourceManager::clear_type(args[:type])
     end
-  end
-  
-  task :addmovie => :environment do
-    MovieMaker.add_at_path(ENV['movie'])
-  end
-  
-  task :addmusic => :environment do
-    MusicMaker.scan_path(ENV['album'])
-  end
-  
-  task :clearmusic => :environment do 
-    Track.delete(:all)
-    Album.delete(:all)
-    Artist.delete(:all)
   end
 end
+

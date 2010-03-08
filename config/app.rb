@@ -7,4 +7,6 @@ class App < Configurable # :nodoc:
   
   config.apis = {:lastfm => "cc85b6d4313e40450230872430b4d631"}
   config.active = true
+  
+  config.resource_types = ['movie', 'music']
 end

@@ -1,5 +1,6 @@
 class DownloadsController < ApplicationController
   include Escape
+  before_filter :require_user
   
   def index
     @downloads = Download.paginate :page => params[:page], :include => [ :resource ], :order => 'downloads.created_at DESC', :conditions => ['downloads.approved = ?', false]

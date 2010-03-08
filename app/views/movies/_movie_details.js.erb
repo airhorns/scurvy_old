@@ -13,7 +13,7 @@
 		<%= render :partial => 'releases/releases_list', :locals => {:releases => movie.download.releases} %>
 	</div>
 	<div class="span-5">
-	<%= image_tag(movie.posterurl, :class => "span-5", :alt => "movie poster") if movie.posterurl %>
+	<%= image_tag(movie.poster.url, :class => "span-5", :alt => "movie poster") if movie.posterurl %>
 	</div>
 	<!-- <div class="clear"></div> -->
 </div>

@@ -1,6 +1,6 @@
 class MovieMaker
   class << self
-    def add_at_path(path)
+    def add_release_at_path(path)
       begin
       if File.directory?(path) 
         imdb = search_nfos(path)

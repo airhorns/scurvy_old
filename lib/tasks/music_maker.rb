@@ -10,25 +10,20 @@ class MusicMaker
           first = false
         else
           if !File.directory?(x)
-            add_track(x)
+            add_track_at_path(x)
           end
         end
       end
     else
-      begin
-      add_track(path)
-      rescue Exception => e
-        puts "Error with path: "+e.message
-        Floater.create!(:location => path, :guess => 'track', :release_id => '0')
-      end
+      add_track_at_path(path)
     end
   end
   
-  def self.add_track(path)
+  def self.add_track_at_path(path)
     
     raise ArgumentError, "Must supply a path to a file to add a track" if File.ftype(path) != "file"
     raise ArgumentError, "File has no contents. " if ! ( File.size(path) > 0 ) 
-    
+    begin
     Mp3Info.open(path) do |mp3info|
       track = Track.from_id3tag(mp3info.tag)
       if(track.album.new_record?)
@@ -51,6 +46,10 @@ class MusicMaker
       
       track.save!
       return track if !track.nil? and !track.new_record?
+    end
+    rescue Exception => e
+      puts "Error with path: "+e.message
+      Floater.create!(:location => path, :guess => 'track', :release_id => '0')
     end
   end
 end
