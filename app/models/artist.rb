@@ -1,6 +1,6 @@
 class Artist < ActiveRecord::Base
-    has_many :albums
-    has_many :tracks
+    has_many :albums, :dependent => :destroy
+    has_many :tracks, :dependent => :destroy
     attr_accessor :scrobble_record
     
     validates_presence_of :name

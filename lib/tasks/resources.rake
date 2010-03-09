@@ -7,6 +7,14 @@ require "#{Rails.root}/lib/tasks/resource_manager.rb"
 
 namespace :rz do  
   
+  task :scan, :type, :needs => :environment do |t, args|
+    if args[:type].blank?
+      App.resource_types.each {|t| ResourceManager::add_type(t)}
+    else
+      ResourceManager::add_type(args[:type])
+    end
+  end
+  
   task :add, :type, :path, :needs => :environment do |t, args|
     if args[:type].blank?
       App.resource_types.each {|t| ResourceManager::add_type(t)}
@@ -40,7 +48,9 @@ namespace :rz do
   
   task :clear, :type, :needs => :environment do |t, args|
     if args[:type].blank?
-      App.resource_types.each {|t| ResourceManager::clear_type(t)}
+      Download.find_each do |d|
+        d.destroy
+      end
     else
       ResourceManager::clear_type(args[:type])
     end
