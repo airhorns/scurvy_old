@@ -16,9 +16,6 @@ namespace :rz do
   end
   
   task :add, :type, :path, :needs => :environment do |t, args|
-    if args[:type].blank?
-      App.resource_types.each {|t| ResourceManager::add_type(t)}
-    else
       raise ArgumentError, "Must supply a recognized type, options are "+App.resource_types.join(',') if App.resource_types.include?(args[:type])
       raise ArgumentError, "Must supply a path to scan when supplying a type" if args[:path].blank?
       
@@ -27,7 +24,6 @@ namespace :rz do
         MovieMaker.add_release_at_path(args[:path])
       when "music"
         MusicMaker.scan_path(args[:path])
-      end
     end
   end
   
@@ -50,6 +46,9 @@ namespace :rz do
     if args[:type].blank?
       Download.find_each do |d|
         d.destroy
+      end
+      Floater.find_each do |f|
+        f.destroy
       end
     else
       ResourceManager::clear_type(args[:type])

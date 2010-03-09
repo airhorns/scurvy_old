@@ -44,7 +44,7 @@ module ResourceManager
           end  
         end
       else
-        first                = false
+        first = false
       end
     end
     puts "Done searching for #{type.pluralize}, #{total_count} paths scanned, #{existing_count} were already known."
