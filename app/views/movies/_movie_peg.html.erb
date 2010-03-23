@@ -3,7 +3,7 @@
 	<%= image_tag(movie.poster.url, :class => "span-3", :alt => "movie poster") if movie.posterurl %>
 	</div>
 	<h3><%=h movie.title %></h3>
-	<div class="span-9">
+	<div class="span-9 last">
 		<p class="synopsis"><%=h movie.synopsis %></p>
 		<ul>
 			<li><%=	"Year: #{movie.year}" if movie.year %></li>

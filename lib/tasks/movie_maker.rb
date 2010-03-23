@@ -51,9 +51,9 @@ class MovieMaker
       
       movie.save! 
       
-      rescue Exception => e
-        puts "Error with path: "+e.message
-        Floater.create!(:location => path, :guess => 'movie', :release_id => '0')
+      # rescue Exception => e
+      #   puts "Error with path: "+e.message
+      #   Floater.create!(:location => path, :guess => 'movie', :release_id => '0')
       end
       
     end

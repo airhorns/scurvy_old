@@ -1,7 +1,7 @@
 class Movie < ActiveRecord::Base
   acts_as_taggable
   has_one :download, :as => :resource, :dependent => :destroy
-  has_attached_file :poster, :thumbnails => {:medium => "300x300", :thumb => "100x100"}
+  has_attached_file :poster, :styles => {:medium => "300x300", :thumb => "100x100"}
   
   before_validation :download_remote_image, :if => :image_url_provided?
   

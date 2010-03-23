@@ -170,7 +170,7 @@ input.autocomplete.focused {
 	height: 16px !important;
 	margin-right: 20px;
 }
-.peg p {
+/*.peg p {
 	margin-bottom: 4px;
 }
 .peg ul {
@@ -183,7 +183,7 @@ input.autocomplete.focused {
 }
 .peg li {
 	padding-right: 10px;
-}
+}*/
 .peg td {
 	padding: 1px;
 }

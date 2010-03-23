@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   
   validates_numericality_of :invitation_limit, :greater_than_or_equal_to => 0
 
-  before_create :set_invitation_limit
+  before_validation :set_invitation_limit
   after_create :use_invitation
   
   def invitation_token
