@@ -25,5 +25,4 @@ gem 'ruby-mp3info', :require => 'mp3info'
 gem 'simple_autocomplete'
 gem 'app'
 gem 'escape'
-#gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git", :branch => "rails3"
-gem "paperclip", '2.3.1.1'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git", :branch => "rails3"
