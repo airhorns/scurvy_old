@@ -1,6 +1,6 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source 'http://gemcutter.org'
-gem "rails", "3.0.0.beta"
+gem "rails", "3.0.0.rc"
 # ActiveRecord requires a database adapter. By default,
 # Rails has selected sqlite3.
 gem "sqlite3-ruby", :require => "sqlite3"
@@ -17,12 +17,16 @@ gem "sqlite3-ruby", :require => "sqlite3"
 #   gem "webrat"
 # end
 
+gem 'authlogic'
 gem 'imdb'
 gem 'will_paginate', '3.0.pre'
 gem 'rbrainz'
 gem 'hornairs-scrobbler', :require => 'scrobbler'
 gem 'ruby-mp3info', :require => 'mp3info'
-gem 'simple_autocomplete'
 gem 'app'
 gem 'escape'
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git", :branch => "rails3"
+gem "paperclip"
+
+group :development do 
+  gem "mongrel", '1.2.0.pre2'
+end

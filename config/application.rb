@@ -56,6 +56,8 @@ module Scurvy
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
     config.filter_parameters << :password_confirmation
+    
+    config.secret_token = "SUPERSECRETPHRASE1233r[lkjgdf;lasdasdasdadasdkjf;lkjsdsd]"
   end
 end
 
